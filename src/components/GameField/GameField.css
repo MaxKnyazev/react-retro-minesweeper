@@ -1,0 +1,12 @@
+.field {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 1vw;
+  height: 1vw;
+}
+
+.field__element {
+  border: 1px solid black;
+  padding: 5px;
+}
