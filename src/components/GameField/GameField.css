@@ -1,12 +1,13 @@
 .field {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  width: 1vw;
-  height: 1vw;
+  /* width: 12vw;
+  height: 12vw; */
 }
 
 .field__element {
   border: 1px solid black;
-  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 1vw; */
 }

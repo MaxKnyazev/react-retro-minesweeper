@@ -1,10 +1,11 @@
-const widthGameField = 10;
-const heightGameField = 10;
-const quantityBombs = 20;
+// const widthGameField = 10;
+// const heightGameField = 10;
+// const quantityBombs = 20;
 
-let gameField = [];
+// let gameField = [];
 
-const createGameField = (field, w, h) => {
+export const createGameField = (w, h) => {
+  let field = [];
   for (let i = 0; i < w; i++) {
     field[i] = [];
   }
@@ -14,6 +15,7 @@ const createGameField = (field, w, h) => {
       field[i][j] = '-';
     }
   }
+  return field;
 }
 
 const printGameField = (field, w, h) => {
@@ -45,7 +47,8 @@ const randomInteger = (min, max) => {
 //   }
 // }
 
-const fillGameFieldWithBombs = (field, w, h, quantity, clickX, clickY) => {
+export const fillGameFieldWithBombs = (field, w, h, quantity, clickX, clickY) => {
+  // let field = JSON.parse(JSON.stringify(gF));
   let bombX, bombY, countBomb = 0;
   while (countBomb < quantity) {
     bombX = randomInteger(0, w - 1);
@@ -57,6 +60,7 @@ const fillGameFieldWithBombs = (field, w, h, quantity, clickX, clickY) => {
       }
     }
   }
+  return field;
 }
 
 const checkBombsAroundElement = (field, x, y, w, h) => {
@@ -126,7 +130,7 @@ const convertStringToArray = (s = '', char) => {
   return s.split(char).map(elem => +elem);
 }
 
-const renderEmptyElement = (field, x, y, w, h) => {
+export const renderEmptyElement = (field, w, h, x, y) => {
   let setOneStep = new Set();
   field[x][y] = 0;
   setOneStep.add(`${x}:${y}`);
@@ -195,7 +199,7 @@ const renderEmptyElement = (field, x, y, w, h) => {
     // console.log(setOneStep);
   }
 
-  console.log(setOneStep)
+  return field;
 }
 
 // const compareGameFieldWithTestField = (field, testField, w, h) => {
@@ -211,8 +215,8 @@ const renderEmptyElement = (field, x, y, w, h) => {
 
 
 
-createGameField(gameField, widthGameField, heightGameField);
-fillGameFieldWithBombs(gameField, widthGameField, heightGameField, quantityBombs, 2, 2);
+// createGameField(gameField, widthGameField, heightGameField);
+// fillGameFieldWithBombs(gameField, widthGameField, heightGameField, quantityBombs, 2, 2);
 // fillGameFieldWithNumbers(gameField, widthGameField, heightGameField);
 // printGameField(gameField, widthGameField, heightGameField);
 
@@ -224,8 +228,8 @@ fillGameFieldWithBombs(gameField, widthGameField, heightGameField, quantityBombs
 //   [9, 1, 0, 1, 9]
 // ];
 // console.log(gameField[2][0])
-renderEmptyElement(gameField, 2, 2, widthGameField, heightGameField);
-printGameField(gameField, widthGameField, heightGameField);
+// renderEmptyElement(gameField, 2, 2, widthGameField, heightGameField);
+// printGameField(gameField, widthGameField, heightGameField);
 
 // renderEmptyElement(gameField, 1, 2, widthGameField, heightGameField);
 // printGameField(gameField, widthGameField, heightGameField);
