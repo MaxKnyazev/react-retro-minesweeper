@@ -63,7 +63,7 @@ export const fillGameFieldWithBombs = (field, w, h, quantity, clickX, clickY) =>
   return field;
 }
 
-const checkBombsAroundElement = (field, x, y, w, h) => {
+export const checkBombsAroundElement = (field, x, y, w, h) => {
   let countBombsAroundElement = 0;
   if ((x-1 >= 0)&&(y-1 >= 0)) { 
     if (field[x-1][y-1] === 9) { 
@@ -200,6 +200,18 @@ export const renderEmptyElement = (field, w, h, x, y) => {
   }
 
   return field;
+}
+
+export const isItVictory = (field, w, h) => {
+  let countEmptyElements = 0;
+  for (let i = 0; i < w; i++) {
+    for (let j = 0; j < h; j++) {
+      if (field[i][j] === '-') {
+        countEmptyElements += 1;
+      }
+    }
+  }
+  return !countEmptyElements;
 }
 
 // const compareGameFieldWithTestField = (field, testField, w, h) => {
