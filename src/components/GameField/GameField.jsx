@@ -93,11 +93,21 @@ class GameField extends React.Component {
             return elem.map((elem, j) => {
               let s = `${i}:${j} `;
               let classes = `field__element`;
-              if ((elem > 0)&&(elem < 9)) {
+              if ((elem >= 0)&&(elem < 9)) {
                 classes += ` field__element--${elem}`
               }
               return (
-                <span onClick = {this.leftClickHandler} key = {s} id = {s} className = {classes}>{elem}</span>
+                <span 
+                  onClick = {this.leftClickHandler} 
+                  onContextMenu = {(e) => {e.preventDefault(); console.log('правый клик')}}
+                  key = {s} 
+                  id = {s} 
+                  className = {classes}
+                >
+                  {/* <span> */}
+                    {elem}
+                  {/* </span> */}
+                </span>
               )
             })
           })
