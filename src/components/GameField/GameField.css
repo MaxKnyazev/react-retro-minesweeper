@@ -1,13 +1,44 @@
 .field {
   display: grid;
-  /* width: 12vw;
-  height: 12vw; */
 }
 
 .field__element {
-  border: 1px solid black;
+  border: 1px dashed rgba(21, 255, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(21, 255, 0, 0);
   /* width: 1vw; */
 }
+
+  .field__element--1 {
+    background-color: rgba(21, 255, 0, 0.05);
+  }
+
+  .field__element--2 {
+    background-color: rgba(21, 255, 0, 0.1);
+  }
+
+  .field__element--3 {
+    background-color: rgba(21, 255, 0, 0.15);
+  }
+
+  .field__element--4 {
+    background-color: rgba(21, 255, 0, 0.2);
+  }
+
+  .field__element--5 {
+    background-color: rgba(21, 255, 0, 0.25);
+  }
+
+  .field__element--6 {
+    background-color: rgba(21, 255, 0, 0.3);
+  }
+
+  .field__element--7 {
+    background-color: rgba(21, 255, 0, 0.35);
+  }
+
+  .field__element--8 {
+    background-color: rgba(21, 255, 0, 0.4);
+  }

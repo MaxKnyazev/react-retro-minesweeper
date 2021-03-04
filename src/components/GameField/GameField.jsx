@@ -35,6 +35,7 @@ class GameField extends React.Component {
   leftClickHandler = (e) => {
     let clickX = +e.target.id.split(':')[0];
     let clickY = +e.target.id.split(':')[1];
+    let bombsAround = checkBombsAroundElement(this.state.arrGameField, clickX, clickY, width, height);
     //глубокая копия массива
     let field = JSON.parse(JSON.stringify(this.state.arrGameField));
     //1й клик
@@ -54,7 +55,7 @@ class GameField extends React.Component {
         console.log('Game over');
         //TODO: зафигачить game over: проигрышь
       } else {
-        if (checkBombsAroundElement(this.state.arrGameField, clickX, clickY, width, height) === 0) {
+        if (bombsAround === 0) {
           field = renderEmptyElement(field, width, height, clickX, clickY);
 
           this.setState(prevState => {
@@ -65,7 +66,7 @@ class GameField extends React.Component {
           })
         } else {
           field = JSON.parse(JSON.stringify(this.state.arrGameField));
-          field[clickX][clickY] = checkBombsAroundElement(this.state.arrGameField, clickX, clickY, width, height);
+          field[clickX][clickY] = bombsAround;
 
           this.setState(prevState => {
             return {
@@ -84,15 +85,19 @@ class GameField extends React.Component {
       <div className = 'field' style = {{
         gridTemplateColumns: `repeat(${width}, 1fr)`,
         gridTemplateRows: `repeat(${height}, 1fr)`,
-        width: `${width * 2}vw`,
-        height: `${height * 2}vw`
+        width: `${width * 2.5}vw`,
+        height: `${height * 2.5}vw`
       }}>
         {
           this.state.arrGameField.map((elem, i) => {
             return elem.map((elem, j) => {
               let s = `${i}:${j} `;
+              let classes = `field__element`;
+              if ((elem > 0)&&(elem < 9)) {
+                classes += ` field__element--${elem}`
+              }
               return (
-                <span onClick = {this.leftClickHandler} key = {s} id = {s} className = 'field__element'>{elem}</span>
+                <span onClick = {this.leftClickHandler} key = {s} id = {s} className = {classes}>{elem}</span>
               )
             })
           })

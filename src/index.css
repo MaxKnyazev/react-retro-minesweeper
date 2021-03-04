@@ -1,10 +1,27 @@
+@font-face {
+  font-family: FontLogo;
+  src: url(./fonts/10368.ttf);
+}
+
+/* @font-face {
+  font-family: A123;
+  src: url(./fonts/10890.otf);
+} */
+
+@font-face {
+  font-family: A123;
+  src: url(./fonts/10890.otf);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  color: rgba(21, 255, 0, 1);
+  font-family: A123;
+  font-size: 25px;
 }
 
+body {
+  background-color: rgb(24, 24, 24);
+}
