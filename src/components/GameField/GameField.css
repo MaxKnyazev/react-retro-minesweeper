@@ -19,8 +19,6 @@
 
   .field__element--1 {
     background-color: rgba(21, 255, 0, 0.1);
-    background: url(../../images/flag-solid.svg) no-repeat 50% 50%;
-    color: red;
     box-sizing: border-box;
   }
 
@@ -53,6 +51,7 @@
   }
 
   .field__element--marked {
-    color: black;
-    background: url(../../images/flag-alt-1.svg);
+    color: rgba(0, 0, 0, 0);
+    background: url(../../images/tour-24px.svg) no-repeat;
+    /* background-color: red; */
   }

@@ -8,9 +8,9 @@ import {
   isItVictory,
 } from '../../data/utils';
 
-const width = 10;
-const height = 10;
-const quantityBombs = 20;
+const width = 16;
+const height = 30;
+const quantityBombs = 99;
 
 class GameField extends React.Component {
   state = {
@@ -50,56 +50,67 @@ class GameField extends React.Component {
           arrGameField : field,
         }
       })
-    } else {
+    } else if (!e.target.classList.contains('field__element--marked')) {
       if (this.state.arrGameField[clickX][clickY] === 9) {
         console.log('Game over');
         //TODO: зафигачить game over: проигрышь
+      } else if (bombsAround === 0) {
+        field = renderEmptyElement(field, width, height, clickX, clickY);
+
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            arrGameField : field,
+          }
+        })
       } else {
-        if (bombsAround === 0) {
-          field = renderEmptyElement(field, width, height, clickX, clickY);
+        field = JSON.parse(JSON.stringify(this.state.arrGameField));
+        field[clickX][clickY] = bombsAround;
 
-          this.setState(prevState => {
-            return {
-              ...prevState,
-              arrGameField : field,
-            }
-          })
-        } else {
-          field = JSON.parse(JSON.stringify(this.state.arrGameField));
-          field[clickX][clickY] = bombsAround;
-
-          this.setState(prevState => {
-            return {
-              ...prevState,
-              arrGameField : field,
-            }
-          })
-        }
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            arrGameField : field,
+          }
+        })
       }
     }
     console.log(e.target.id);
   }
 
+  rightClickHandler = (e) => {
+    e.preventDefault();
+    let clickX = +e.target.id.split(':')[0];
+    let clickY = +e.target.id.split(':')[1];
+
+    if ((this.state.arrGameField[clickX][clickY] === '-')||(this.state.arrGameField[clickX][clickY] === 9)) {
+      e.target.classList.toggle('field__element--marked');
+      console.log('правый клик');
+    }
+  }
+
   render () {
     return (
       <div className = 'field' style = {{
-        gridTemplateColumns: `repeat(${width}, 1fr)`,
-        gridTemplateRows: `repeat(${height}, 1fr)`,
-        width: `${width * 2.5}vw`,
-        height: `${height * 2.5}vw`
+        gridTemplateRows: `repeat(${width}, 1fr)`,
+        gridTemplateColumns: `repeat(${height}, 1fr)`,
+        width: `${height * 2.5}vw`,
+        height: `${width * 2.5}vw`
       }}>
         {
           this.state.arrGameField.map((elem, i) => {
             return elem.map((elem, j) => {
               let s = `${i}:${j} `;
               let classes = `field__element`;
-              if ((elem >= 0)&&(elem < 9)) {
+              if ((elem >= 0)&&(elem < 9)&&(elem !== '-')) {
                 classes += ` field__element--${elem}`
               }
+
+              if ((elem === 9)||(elem === '-')) { elem = '' }
               return (
                 <span 
                   onClick = {this.leftClickHandler} 
-                  onContextMenu = {(e) => {e.preventDefault(); console.log('правый клик')}}
+                  onContextMenu = {this.rightClickHandler}
                   key = {s} 
                   id = {s} 
                   className = {classes}

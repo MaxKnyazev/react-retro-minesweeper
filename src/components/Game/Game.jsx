@@ -5,7 +5,9 @@ import './Game.css'
 class Game extends React.Component {
   render () {
     return (
-      <GameField />
+      <section className = 'field__wrapper'>
+        <GameField />
+      </section>
     )
   }
 }
