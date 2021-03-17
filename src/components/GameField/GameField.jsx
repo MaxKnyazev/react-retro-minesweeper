@@ -8,9 +8,9 @@ import {
   isItVictory,
 } from '../../data/utils';
 
-const width = 16;
-const height = 30;
-const quantityBombs = 99;
+const width = 30;
+const height = 16;
+const quantityBombs = 92;
 
 class GameField extends React.Component {
   state = {
@@ -21,12 +21,12 @@ class GameField extends React.Component {
   componentDidMount () {
     this.setState({
       ...this.state,
-      arrGameField : createGameField(width, height)
+      arrGameField : createGameField(height, width)
     })
   }
 
   componentDidUpdate () {
-    if (isItVictory(this.state.arrGameField, width, height)) {
+    if (isItVictory(this.state.arrGameField, height, width)) {
       console.log('it is victory');
       //TODO: зафигачить game over: победа
     }
@@ -35,13 +35,13 @@ class GameField extends React.Component {
   leftClickHandler = (e) => {
     let clickX = +e.target.id.split(':')[0];
     let clickY = +e.target.id.split(':')[1];
-    let bombsAround = checkBombsAroundElement(this.state.arrGameField, clickX, clickY, width, height);
+    let bombsAround = checkBombsAroundElement(this.state.arrGameField, clickX, clickY, height, width);
     //глубокая копия массива
     let field = JSON.parse(JSON.stringify(this.state.arrGameField));
     //1й клик
     if (!this.state.isGameStart) {
-      field = fillGameFieldWithBombs(field, width, height, quantityBombs, clickX, clickY);
-      field = renderEmptyElement(field, width, height, clickX, clickY);
+      field = fillGameFieldWithBombs(field, height, width, quantityBombs, clickX, clickY);
+      field = renderEmptyElement(field, height, width, clickX, clickY);
 
       this.setState(prevState => {
         return {
@@ -55,7 +55,7 @@ class GameField extends React.Component {
         console.log('Game over');
         //TODO: зафигачить game over: проигрышь
       } else if (bombsAround === 0) {
-        field = renderEmptyElement(field, width, height, clickX, clickY);
+        field = renderEmptyElement(field, height, width, clickX, clickY);
 
         this.setState(prevState => {
           return {
@@ -92,10 +92,10 @@ class GameField extends React.Component {
   render () {
     return (
       <div className = 'field' style = {{
-        gridTemplateRows: `repeat(${width}, 1fr)`,
-        gridTemplateColumns: `repeat(${height}, 1fr)`,
-        width: `${height * 2.5}vw`,
-        height: `${width * 2.5}vw`
+        gridTemplateRows: `repeat(${height}, 1fr)`,
+        gridTemplateColumns: `repeat(${width}, 1fr)`,
+        minWidth: `${width * 1.5}rem`,
+        minHeight: `${height * 1.5}rem`
       }}>
         {
           this.state.arrGameField.map((elem, i) => {
