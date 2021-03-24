@@ -7,18 +7,32 @@ import {
   checkBombsAroundElement,
   isItVictory,
 } from '../../data/utils';
+import data from '../../data/data';
 
-const width = 30;
-const height = 16;
-const quantityBombs = 92;
+const width = data.w;
+const height = data.h;
+const quantityBombs = data.b;
+
+console.log('data-------------------GameField 1 -');
+console.log(data);
 
 class GameField extends React.Component {
+
   state = {
     isGameStart : false,
     arrGameField : [[]],
   }
 
   componentDidMount () {
+    console.log('data-------------------GameField 2 -');
+    console.log(data);
+    console.log('width-------------------GameField 2 -');
+    console.log(width);
+    console.log('height-------------------GameField 2 -');
+    console.log(height);
+    console.log('quantityBombs-------------------GameField 2 -');
+    console.log(quantityBombs);
+        
     this.setState({
       ...this.state,
       arrGameField : createGameField(height, width)

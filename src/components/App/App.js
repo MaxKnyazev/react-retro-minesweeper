@@ -1,6 +1,13 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
 import './App.css';
 import Game from '../Game';
+import GameOver from '../GameOver';
+import Settings from '../Settings';
 
 class App extends React.Component {
   // state = {};
@@ -8,13 +15,21 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
-        <header></header>
+      <Router>
+        <Switch>
+          <Route path='/game'>
+            <Game />
+          </Route>
 
-        <Game />
-        
-        <footer></footer>
-      </>
+          <Route path='/gameover'>
+            <GameOver />
+          </Route>
+
+          <Route path='/'>
+            <Settings />
+          </Route>
+        </Switch>
+      </Router>
 
     );
   }
