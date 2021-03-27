@@ -9,12 +9,12 @@ import {
 } from '../../data/utils';
 import data from '../../data/data';
 
-const width = data.w;
-const height = data.h;
-const quantityBombs = data.b;
+// const width = data.w;
+// const height = data.h;
+// const quantityBombs = data.b;
 
-console.log('data-------------------GameField 1 -');
-console.log(data);
+// console.log('data-------------------GameField 1 -');
+// console.log(data);
 
 class GameField extends React.Component {
 
@@ -23,24 +23,28 @@ class GameField extends React.Component {
     arrGameField : [[]],
   }
 
+  width = data.w
+  height = data.h
+  quantityBombs = data.b
+
   componentDidMount () {
     console.log('data-------------------GameField 2 -');
     console.log(data);
     console.log('width-------------------GameField 2 -');
-    console.log(width);
+    console.log(this.width);
     console.log('height-------------------GameField 2 -');
-    console.log(height);
+    console.log(this.height);
     console.log('quantityBombs-------------------GameField 2 -');
-    console.log(quantityBombs);
+    console.log(this.quantityBombs);
         
     this.setState({
       ...this.state,
-      arrGameField : createGameField(height, width)
+      arrGameField : createGameField(this.height, this.width)
     })
   }
 
   componentDidUpdate () {
-    if (isItVictory(this.state.arrGameField, height, width)) {
+    if (isItVictory(this.state.arrGameField, this.height, this.width)) {
       console.log('it is victory');
       //TODO: зафигачить game over: победа
     }
@@ -49,13 +53,13 @@ class GameField extends React.Component {
   leftClickHandler = (e) => {
     let clickX = +e.target.id.split(':')[0];
     let clickY = +e.target.id.split(':')[1];
-    let bombsAround = checkBombsAroundElement(this.state.arrGameField, clickX, clickY, height, width);
+    let bombsAround = checkBombsAroundElement(this.state.arrGameField, clickX, clickY, this.height, this.width);
     //глубокая копия массива
     let field = JSON.parse(JSON.stringify(this.state.arrGameField));
     //1й клик
     if (!this.state.isGameStart) {
-      field = fillGameFieldWithBombs(field, height, width, quantityBombs, clickX, clickY);
-      field = renderEmptyElement(field, height, width, clickX, clickY);
+      field = fillGameFieldWithBombs(field, this.height, this.width, this.quantityBombs, clickX, clickY);
+      field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
 
       this.setState(prevState => {
         return {
@@ -69,7 +73,7 @@ class GameField extends React.Component {
         console.log('Game over');
         //TODO: зафигачить game over: проигрышь
       } else if (bombsAround === 0) {
-        field = renderEmptyElement(field, height, width, clickX, clickY);
+        field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
 
         this.setState(prevState => {
           return {
@@ -106,10 +110,10 @@ class GameField extends React.Component {
   render () {
     return (
       <div className = 'field' style = {{
-        gridTemplateRows: `repeat(${height}, 1fr)`,
-        gridTemplateColumns: `repeat(${width}, 1fr)`,
-        minWidth: `${width * 1.5}rem`,
-        minHeight: `${height * 1.5}rem`
+        gridTemplateRows: `repeat(${this.height}, 1fr)`,
+        gridTemplateColumns: `repeat(${this.width}, 1fr)`,
+        minWidth: `${this.width * 1.5}rem`,
+        minHeight: `${this.height * 1.5}rem`
       }}>
         {
           this.state.arrGameField.map((elem, i) => {
