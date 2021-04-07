@@ -3,7 +3,7 @@
 }
 
 .field__element {
-  border: 1px dashed rgba(21, 255, 0, 0.4);
+  border: 1px dashed rgba(21, 255, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,6 +48,11 @@
 
   .field__element--8 {
     background-color: rgba(21, 255, 0, 0.60);
+  }
+
+  .field__element--mine {
+    color: rgba(0, 0, 0, 0);
+    background: url(../../images/tour-24px.svg) no-repeat;
   }
 
   .field__element--marked {

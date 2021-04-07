@@ -6,6 +6,7 @@ import {
   renderEmptyElement, 
   checkBombsAroundElement,
   isItVictory,
+  gameOverDefeat,
 } from '../../data/utils';
 import data from '../../data/data';
 
@@ -20,6 +21,7 @@ class GameField extends React.Component {
 
   state = {
     isGameStart : false,
+    isGameOver : false,
     arrGameField : [[]],
   }
 
@@ -44,7 +46,11 @@ class GameField extends React.Component {
   }
 
   componentDidUpdate () {
-    if (isItVictory(this.state.arrGameField, this.height, this.width)) {
+    if (this.isGameOver) {
+      console.log('GameOver (componentDidUpdate)');
+    }
+
+    if ((isItVictory(this.state.arrGameField, this.height, this.width))&&(!this.isGameOver)) {
       console.log('it is victory');
       //TODO: зафигачить game over: победа
     }
@@ -71,7 +77,16 @@ class GameField extends React.Component {
     } else if (!e.target.classList.contains('field__element--marked')) {
       if (this.state.arrGameField[clickX][clickY] === 9) {
         console.log('Game over');
-        //TODO: зафигачить game over: проигрышь
+        console.log(this.state);
+        gameOverDefeat(field, this.height, this.width);
+
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            isGameOver : true,
+            arrGameField : field,
+          }
+        })
       } else if (bombsAround === 0) {
         field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
 
@@ -108,6 +123,7 @@ class GameField extends React.Component {
   }
 
   render () {
+    console.log(this.state);
     return (
       <div className = 'field' style = {{
         gridTemplateRows: `repeat(${this.height}, 1fr)`,
@@ -124,7 +140,14 @@ class GameField extends React.Component {
                 classes += ` field__element--${elem}`
               }
 
-              if ((elem === 9)||(elem === '-')) { elem = '' }
+              if ((elem === 9)||(elem === '-')) { 
+                if ((elem === 9)&&(this.state.isGameOver)) {
+                  classes += ' field__element--mine'
+                }
+
+                elem = '' 
+              }
+
               return (
                 <span 
                   onClick = {this.leftClickHandler} 

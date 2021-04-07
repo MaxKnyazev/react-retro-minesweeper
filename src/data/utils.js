@@ -202,6 +202,20 @@ export const renderEmptyElement = (field, w, h, x, y) => {
   return field;
 }
 
+export const gameOverDefeat = (field, w, h) => {
+  for (let i = 0; i < w; i++) {
+    for (let j = 0; j < h; j++) {
+      if (field[i][j] === '-') {
+        field[i][j] = checkBombsAroundElement(field, i, j, w, h)
+      }
+
+      // if (field[i][j] === '9') {
+
+      // }
+    }
+  }
+}
+
 export const isItVictory = (field, w, h) => {
   let countEmptyElements = 0;
   for (let i = 0; i < w; i++) {
