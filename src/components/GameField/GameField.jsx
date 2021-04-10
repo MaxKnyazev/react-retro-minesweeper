@@ -80,13 +80,26 @@ class GameField extends React.Component {
         console.log(this.state);
         gameOverDefeat(field, this.height, this.width);
 
-        this.setState(prevState => {
-          return {
-            ...prevState,
+        // this.setState(prevState => {
+        //   return {
+        //     ...prevState,
+        //     isGameOver : true,
+        //     arrGameField : field,
+        //   }
+        // })
+
+        // this.setState(prevState => {
+        //   return {
+        //     isGameOver : !prevState.isGameOver,
+        //     arrGameField : field,
+        //   }
+        // })
+
+        this.setState({
             isGameOver : true,
             arrGameField : field,
-          }
         })
+
       } else if (bombsAround === 0) {
         field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
 
@@ -117,7 +130,10 @@ class GameField extends React.Component {
     let clickY = +e.target.id.split(':')[1];
 
     if ((this.state.arrGameField[clickX][clickY] === '-')||(this.state.arrGameField[clickX][clickY] === 9)) {
+      data.c += 1;
       e.target.classList.toggle('field__element--marked');
+
+      console.log(`c = ${data.c}`)
       console.log('правый клик');
     }
   }

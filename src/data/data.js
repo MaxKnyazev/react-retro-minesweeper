@@ -2,6 +2,7 @@ class Data {
   _w = 12
   _h = 12
   _b = 28
+  _c = 0
 
   get w () {
     return this._w;
@@ -27,6 +28,13 @@ class Data {
     this._b = value;
   }
 
+  get c () {
+    return this._c;
+  }
+  
+  set c(value) {
+    this._c = value;
+  }
 }
 
 export default new Data();
