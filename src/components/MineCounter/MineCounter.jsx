@@ -1,6 +1,6 @@
 import React from 'react';
 import './MineCounter.css';
-import data from '../../data/data';
+// import data from '../../data/data';
 
 class MineCounter extends React.Component {
   render () {

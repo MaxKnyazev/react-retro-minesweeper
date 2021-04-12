@@ -1,6 +1,6 @@
 // const widthGameField = 10;
 // const heightGameField = 10;
-// const quantityBombs = 20;
+// const quantityMines = 20;
 
 // let gameField = [];
 
@@ -18,16 +18,16 @@ export const createGameField = (w, h) => {
   return field;
 }
 
-const printGameField = (field, w, h) => {
-  let s = ``;
-  for (let i = 0; i < w; i++) {
-    for (let j = 0; j < h; j++) {
-      s += `${field[i][j]}  `;
-    }
-    console.log(s)
-    s = '';
-  }
-}
+// const printGameField = (field, w, h) => {
+//   let s = ``;
+//   for (let i = 0; i < w; i++) {
+//     for (let j = 0; j < h; j++) {
+//       s += `${field[i][j]}  `;
+//     }
+//     console.log(s)
+//     s = '';
+//   }
+// }
 
 const randomInteger = (min, max) => {
   // случайное число от min до (max+1)
@@ -35,92 +35,92 @@ const randomInteger = (min, max) => {
   return Math.floor(rand);
 }
 
-// const fillGameFieldWithBombs = (field, w, h, quantity) => {
-//   let x, y, countBomb = 0;
-//   while (countBomb < quantity) {
+// const fillGameFieldWithMines = (field, w, h, quantity) => {
+//   let x, y, countMine = 0;
+//   while (countMine < quantity) {
 //     x = randomInteger(0, w - 1);
 //     y = randomInteger(0, h - 1);
 //     if(field[x][y] === 0) {
 //       field[x][y] = 9;
-//       countBomb += 1;
+//       countMine += 1;
 //     }
 //   }
 // }
 
-export const fillGameFieldWithBombs = (field, w, h, quantity, clickX, clickY) => {
+export const fillGameFieldWithMines = (field, w, h, quantity, clickX, clickY) => {
   // let field = JSON.parse(JSON.stringify(gF));
-  let bombX, bombY, countBomb = 0;
-  while (countBomb < quantity) {
-    bombX = randomInteger(0, w - 1);
-    bombY = randomInteger(0, h - 1);
-    if(field[bombX][bombY] === '-') {
-      if ((Math.abs(clickX - bombX) > 1)||(Math.abs(clickY - bombY) > 1)) {
-        field[bombX][bombY] = 9;
-        countBomb += 1;
+  let mineX, mineY, countMine = 0;
+  while (countMine < quantity) {
+    mineX = randomInteger(0, w - 1);
+    mineY = randomInteger(0, h - 1);
+    if(field[mineX][mineY] === '-') {
+      if ((Math.abs(clickX - mineX) > 1)||(Math.abs(clickY - mineY) > 1)) {
+        field[mineX][mineY] = 9;
+        countMine += 1;
       }
     }
   }
   return field;
 }
 
-export const checkBombsAroundElement = (field, x, y, w, h) => {
-  let countBombsAroundElement = 0;
+export const checkMinesAroundElement = (field, x, y, w, h) => {
+  let countMinesAroundElement = 0;
   if ((x-1 >= 0)&&(y-1 >= 0)) { 
     if (field[x-1][y-1] === 9) { 
-      countBombsAroundElement += 1; 
+      countMinesAroundElement += 1; 
     } 
   }
 
   if (y-1 >= 0) {
     if (field[x][y-1] === 9) {
-      countBombsAroundElement += 1; 
+      countMinesAroundElement += 1; 
     }
   }
 
   if ((x+1 < w)&&(y-1 >= 0)) {
     if (field[x+1][y-1] === 9) {
-      countBombsAroundElement += 1;
+      countMinesAroundElement += 1;
     }
   }
 
   if (x-1 >= 0) {
     if (field[x-1][y] === 9) {
-      countBombsAroundElement += 1;
+      countMinesAroundElement += 1;
     }
   }
 
   if (x+1 < w) {
     if (field[x+1][y] === 9) {
-      countBombsAroundElement += 1;
+      countMinesAroundElement += 1;
     }
   }
 
   if ((x-1 >= 0)&&(y+1 < h)) {
     if (field[x-1][y+1] === 9) {
-      countBombsAroundElement += 1;
+      countMinesAroundElement += 1;
     }
   }
   
   if (y+1 < h) {
     if (field[x][y+1] === 9) {
-      countBombsAroundElement += 1;
+      countMinesAroundElement += 1;
     }
   }
   
   if ((x+1 < w)&&(y+1 < h)) {
     if (field[x+1][y+1] === 9) {
-      countBombsAroundElement += 1;
+      countMinesAroundElement += 1;
     }
   }
 
-  return countBombsAroundElement;
+  return countMinesAroundElement;
 }
 
 // const fillGameFieldWithNumbers = (field, w, h) => {
 //   for (let i = 0; i < w; i++) {
 //     for (let j = 0; j < h; j++) {
 //       if (field[i][j] === '-') {
-//         field[i][j] = checkBombsAroundElement(field, i, j, w, h)
+//         field[i][j] = checkMinesAroundElement(field, i, j, w, h)
 //       }
 //     }
 //   }
@@ -140,56 +140,56 @@ export const renderEmptyElement = (field, w, h, x, y) => {
     // console.log(`${x}, ${y}`) 
 
     if ((x-1 >= 0)&&(y-1 >= 0)) {
-      field[x-1][y-1] = checkBombsAroundElement(field, x-1, y-1, w, h);
+      field[x-1][y-1] = checkMinesAroundElement(field, x-1, y-1, w, h);
       if (field[x-1][y-1] === 0) {
         setOneStep.add(`${x-1}:${y-1}`);
       }
     }
   
     if (y-1 >= 0) {
-      field[x][y-1] = checkBombsAroundElement(field, x, y-1, w, h);
+      field[x][y-1] = checkMinesAroundElement(field, x, y-1, w, h);
       if (field[x][y-1] === 0) {
         setOneStep.add(`${x}:${y-1}`);
       }
     }
   
     if ((x+1 < w)&&(y-1 >= 0)) {
-      field[x+1][y-1] = checkBombsAroundElement(field, x+1, y-1, w, h);
+      field[x+1][y-1] = checkMinesAroundElement(field, x+1, y-1, w, h);
       if (field[x+1][y-1] === 0) {
         setOneStep.add(`${x+1}:${y-1}`);
       }
     }
   
     if (x-1 >= 0) {
-      field[x-1][y] = checkBombsAroundElement(field, x-1, y, w, h);
+      field[x-1][y] = checkMinesAroundElement(field, x-1, y, w, h);
       if (field[x-1][y] === 0) {
         setOneStep.add(`${x-1}:${y}`);
       }
     }
   
     if (x+1 < w) {
-      field[x+1][y] = checkBombsAroundElement(field, x+1, y, w, h);
+      field[x+1][y] = checkMinesAroundElement(field, x+1, y, w, h);
       if (field[x+1][y] === 0) {
         setOneStep.add(`${x+1}:${y}`);
       } 
     }
   
     if ((x-1 >= 0)&&(y+1 < h)) {
-      field[x-1][y+1] = checkBombsAroundElement(field, x-1, y+1, w, h);
+      field[x-1][y+1] = checkMinesAroundElement(field, x-1, y+1, w, h);
       if (field[x-1][y+1] === 0) {
         setOneStep.add(`${x-1}:${y+1}`);
       } 
     }
     
     if (y+1 < h) {
-      field[x][y+1] = checkBombsAroundElement(field, x, y+1, w, h);
+      field[x][y+1] = checkMinesAroundElement(field, x, y+1, w, h);
       if (field[x][y+1] === 0) {
         setOneStep.add(`${x}:${y+1}`);
       }
     }
     
     if ((x+1 < w)&&(y+1 < h)) {
-      field[x+1][y+1] = checkBombsAroundElement(field, x+1, y+1, w, h);
+      field[x+1][y+1] = checkMinesAroundElement(field, x+1, y+1, w, h);
       if (field[x+1][y+1] === 0) {
         setOneStep.add(`${x+1}:${y+1}`);
       }
@@ -206,7 +206,7 @@ export const gameOverDefeat = (field, w, h) => {
   for (let i = 0; i < w; i++) {
     for (let j = 0; j < h; j++) {
       if (field[i][j] === '-') {
-        field[i][j] = checkBombsAroundElement(field, i, j, w, h)
+        field[i][j] = checkMinesAroundElement(field, i, j, w, h)
       }
 
       // if (field[i][j] === '9') {
@@ -242,7 +242,7 @@ export const isItVictory = (field, w, h) => {
 
 
 // createGameField(gameField, widthGameField, heightGameField);
-// fillGameFieldWithBombs(gameField, widthGameField, heightGameField, quantityBombs, 2, 2);
+// fillGameFieldWithMines(gameField, widthGameField, heightGameField, quantityMines, 2, 2);
 // fillGameFieldWithNumbers(gameField, widthGameField, heightGameField);
 // printGameField(gameField, widthGameField, heightGameField);
 

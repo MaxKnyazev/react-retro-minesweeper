@@ -1,7 +1,7 @@
 class Data {
   _w = 12
   _h = 12
-  _b = 28
+  _m = 28
   _c = 0
 
   get w () {
@@ -20,12 +20,12 @@ class Data {
     this._h = value;
   }
   
-  get b () {
-    return this._b;
+  get m () {
+    return this._m;
   }
 
-  set b(value) {
-    this._b = value;
+  set m(value) {
+    this._m = value;
   }
 
   get c () {

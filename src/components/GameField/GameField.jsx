@@ -2,9 +2,9 @@ import React from 'react';
 import './GameField.css';
 import {
   createGameField, 
-  fillGameFieldWithBombs, 
+  fillGameFieldWithMines, 
   renderEmptyElement, 
-  checkBombsAroundElement,
+  checkMinesAroundElement,
   isItVictory,
   gameOverDefeat,
 } from '../../data/utils';
@@ -12,7 +12,7 @@ import data from '../../data/data';
 
 // const width = data.w;
 // const height = data.h;
-// const quantityBombs = data.b;
+// const quantityMines = data.m;
 
 // console.log('data-------------------GameField 1 -');
 // console.log(data);
@@ -27,7 +27,7 @@ class GameField extends React.Component {
 
   width = data.w
   height = data.h
-  quantityBombs = data.b
+  quantityMines = data.m
 
   componentDidMount () {
     console.log('data-------------------GameField 2 -');
@@ -36,8 +36,8 @@ class GameField extends React.Component {
     console.log(this.width);
     console.log('height-------------------GameField 2 -');
     console.log(this.height);
-    console.log('quantityBombs-------------------GameField 2 -');
-    console.log(this.quantityBombs);
+    console.log('quantityMines-------------------GameField 2 -');
+    console.log(this.quantityMines);
         
     this.setState({
       ...this.state,
@@ -59,12 +59,12 @@ class GameField extends React.Component {
   leftClickHandler = (e) => {
     let clickX = +e.target.id.split(':')[0];
     let clickY = +e.target.id.split(':')[1];
-    let bombsAround = checkBombsAroundElement(this.state.arrGameField, clickX, clickY, this.height, this.width);
+    let minesAround = checkMinesAroundElement(this.state.arrGameField, clickX, clickY, this.height, this.width);
     //глубокая копия массива
     let field = JSON.parse(JSON.stringify(this.state.arrGameField));
     //1й клик
     if (!this.state.isGameStart) {
-      field = fillGameFieldWithBombs(field, this.height, this.width, this.quantityBombs, clickX, clickY);
+      field = fillGameFieldWithMines(field, this.height, this.width, this.quantityMines, clickX, clickY);
       field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
 
       this.setState(prevState => {
@@ -100,7 +100,7 @@ class GameField extends React.Component {
             arrGameField : field,
         })
 
-      } else if (bombsAround === 0) {
+      } else if (minesAround === 0) {
         field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
 
         this.setState(prevState => {
@@ -111,7 +111,7 @@ class GameField extends React.Component {
         })
       } else {
         field = JSON.parse(JSON.stringify(this.state.arrGameField));
-        field[clickX][clickY] = bombsAround;
+        field[clickX][clickY] = minesAround;
 
         this.setState(prevState => {
           return {

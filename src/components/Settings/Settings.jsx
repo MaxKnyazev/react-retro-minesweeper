@@ -7,147 +7,170 @@ class Settings extends React.Component {
   state = {
     width: data.w,
     height: data.h,
-    bombs: data.b,
-    maxBombs: (data.w * data.h) - 9,   
+    mines: data.m,
+    maxMines: data.w * data.h - 9,
     isDataCorrect: false,
-  }
+  };
 
-  componentDidUpdate (prevProps, prevState) {
-    console.log(this.state)
-    if (this.state.bombs > this.state.maxBombs) {
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.state);
+    if (this.state.mines > this.state.maxMines) {
       this.setState(() => {
         return {
-          bombs: this.state.maxBombs,
-        }
-      })
+          mines: this.state.maxMines,
+        };
+      });
     }
   }
-  
+
   inputWidthHandler = (e) => {
     if (+e.target.value > 40) {
       e.target.value = 40;
       this.setState(() => {
         return {
-          width: 40
-        }
-      })
+          width: 40,
+        };
+      });
     }
 
     this.setState((prevState) => {
       return {
         width: +e.target.value,
-        maxBombs: (+e.target.value * this.state.height) - 9,
-      }
-    })
+        maxMines: +e.target.value * this.state.height - 9,
+      };
+    });
 
     data.w = +e.target.value;
 
-    // if (this.state.bombs > this.state.maxBombs) {
+    // if (this.state.mines > this.state.maxMines) {
     //   this.setState((prevState) => {
     //     return {
-    //       bombs: this.state.maxBombs,
+    //       mines: this.state.maxMines,
     //     }
     //   })
     // }
-  }
+  };
 
   inputHeightHandler = (e) => {
     if (+e.target.value > 40) {
       e.target.value = 40;
       this.setState(() => {
         return {
-          height: 40
-        }
-      })
+          height: 40,
+        };
+      });
     }
 
     this.setState((prevState) => {
       return {
         height: +e.target.value,
-        maxBombs: (this.state.width * +e.target.value) - 9,
-      }
-    })
+        maxMines: this.state.width * +e.target.value - 9,
+      };
+    });
 
     data.h = +e.target.value;
 
-    // if (this.state.bombs > this.state.maxBombs) {
+    // if (this.state.mines > this.state.maxMines) {
     //   this.setState((prevState) => {
     //     return {
-    //       bombs: this.state.maxBombs,
+    //       mines: this.state.maxMines,
     //     }
     //   })
     // }
-  }
+  };
 
-  inputBombsHandler = (e) => {
+  inputMinesHandler = (e) => {
     if (+e.target.value < 1) {
       e.target.value = 1;
       this.setState({
-        bombs: 1,
-      })
+        mines: 1,
+      });
     }
 
-    if (+e.target.value > this.state.maxBombs) {
-      e.target.value = this.state.maxBombs;
+    if (+e.target.value > this.state.maxMines) {
+      e.target.value = this.state.maxMines;
       this.setState({
-        bombs: this.state.maxBombs,
-      })
+        mines: this.state.maxMines,
+      });
     }
 
-    if (this.state.bombs > this.state.maxBombs) {
+    if (this.state.mines > this.state.maxMines) {
       this.setState({
-        bombs: this.state.maxBombs,
-      })
+        mines: this.state.maxMines,
+      });
     }
 
     this.setState({
-      bombs: +e.target.value,
-    })
+      mines: +e.target.value,
+    });
 
-    data.b = +e.target.value;
-  }
+    data.m = +e.target.value;
+  };
 
   clickHandler = (e) => {
     this.setState({
       isDataCorrect: true,
-    })
-  }
+    });
+  };
 
-  render () {
-
+  render() {
     // console.log('data  --- Settings --- 1');
     // console.log(data);
     // console.log('data  --- Settings --- 2');
     // console.log(data);
-    
+
     return (
       <section>
         <h1>Settings</h1>
 
         <Link to='/game'>Start game</Link>
-        {/* TODO: Ограничить ввод в инпуты через onChange */}
+
         <br />
+
         <label>
-          width: <input onChange={this.inputWidthHandler} type='number' min='4' max='40' step='1' value={this.state.width}/>
+          width:
+          <input
+            onChange={this.inputWidthHandler}
+            type='number'
+            min='4'
+            max='40'
+            step='1'
+            value={this.state.width}
+          />
         </label>
 
         <br />
         <label>
-          height: <input onChange={this.inputHeightHandler} type='number' min='4' max='40' step='1' value={this.state.height}/>
+          height:
+          <input
+            onChange={this.inputHeightHandler}
+            type='number'
+            min='4'
+            max='40'
+            step='1'
+            value={this.state.height}
+          />
         </label>
 
         <br />
         <label>
-          bombs: <input onChange={this.inputBombsHandler} type='number' min='1' max={this.state.maxBombs} step='1' value={this.state.bombs}/>
+          mines:{' '}
+          <input
+            onChange={this.inputMinesHandler}
+            type='number'
+            min='1'
+            max={this.state.maxMines}
+            step='1'
+            value={this.state.mines}
+          />
         </label>
-        
+
         <button onClick={this.clickHandler}>
           Start Game
-          {this.state.isDataCorrect ? <Redirect to="/game" /> : null}
+          {this.state.isDataCorrect ? <Redirect to='/game' /> : null}
         </button>
-        
       </section>
-    )
+    );
   }
 }
 
