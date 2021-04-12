@@ -3,16 +3,144 @@ import GameField from '../GameField';
 import MineCounter from '../MineCounter';
 import './Game.css';
 import data from '../../data/data';
+import {
+  createGameField, 
+  fillGameFieldWithMines, 
+  renderEmptyElement, 
+  checkMinesAroundElement,
+  isItVictory,
+  gameOverDefeat,
+} from '../../data/utils';
 
 class Game extends React.Component {
+  state = {
+    isGameStart : false,
+    isGameOver : false,
+    arrGameField : [[]],
+    countMines : 0,
+  }
+
+  width = data.w
+  height = data.h
+  quantityMines = data.m
+
+  componentDidMount () {     
+    this.setState({
+      ...this.state,
+      arrGameField : createGameField(this.height, this.width),
+      countMines : this.quantityMines
+    })
+  }
+
+  componentDidUpdate () {
+    if (this.isGameOver) {
+      console.log('GameOver (componentDidUpdate)');
+    }
+
+    if ((isItVictory(this.state.arrGameField, this.height, this.width))&&(!this.isGameOver)) {
+      console.log('it is victory');
+      //TODO: зафигачить game over: победа
+    }
+  }
+
+  leftClickHandler = (e) => {
+    let clickX = +e.target.id.split(':')[0];
+    let clickY = +e.target.id.split(':')[1];
+    let minesAround = checkMinesAroundElement(this.state.arrGameField, clickX, clickY, this.height, this.width);
+    //глубокая копия массива
+    let field = JSON.parse(JSON.stringify(this.state.arrGameField));
+    //1й клик
+    if (!this.state.isGameStart) {
+      field = fillGameFieldWithMines(field, this.height, this.width, this.quantityMines, clickX, clickY);
+      field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
+
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          isGameStart: true,
+          arrGameField : field,
+        }
+      })
+    } else if (!e.target.classList.contains('field__element--marked')) {
+      if (this.state.arrGameField[clickX][clickY] === 9) {
+        console.log('Game over');
+        console.log(this.state);
+        gameOverDefeat(field, this.height, this.width);
+
+        // this.setState(prevState => {
+        //   return {
+        //     ...prevState,
+        //     isGameOver : true,
+        //     arrGameField : field,
+        //   }
+        // })
+
+        // this.setState(prevState => {
+        //   return {
+        //     isGameOver : !prevState.isGameOver,
+        //     arrGameField : field,
+        //   }
+        // })
+
+        this.setState({
+            isGameOver : true,
+            arrGameField : field,
+        })
+
+      } else if (minesAround === 0) {
+        field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
+
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            arrGameField : field,
+          }
+        })
+      } else {
+        field = JSON.parse(JSON.stringify(this.state.arrGameField));
+        field[clickX][clickY] = minesAround;
+
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            arrGameField : field,
+          }
+        })
+      }
+    }
+    console.log(e.target.id);
+    console.log('arrGameField');
+    console.log(this.state.arrGameField);
+  }
+
+  rightClickHandler = (e) => {
+    e.preventDefault();
+    let clickX = +e.target.id.split(':')[0];
+    let clickY = +e.target.id.split(':')[1];
+
+    if ((this.state.arrGameField[clickX][clickY] === '-')||(this.state.arrGameField[clickX][clickY] === 9)) {
+      e.target.classList.toggle('field__element--marked');
+      this.setState((prevState) => ({
+        countMines : prevState.countMines - 1,
+      }))
+      console.log('правый клик');
+    }
+  }
+
   render () {
+    console.log('arrGameField');
+    console.log(this.state.arrGameField);
     return (
       <section className = 'field__wrapper'>
         <div >
-          <MineCounter count={data.c}/>
+          <MineCounter count={this.state.countMines}/>
         </div>
 
-        <GameField />
+        <GameField 
+          leftClickHandler={this.leftClickHandler} 
+          options={this.state}
+          rightClickHandler={this.rightClickHandler}
+        />
       </section>
     )
   }

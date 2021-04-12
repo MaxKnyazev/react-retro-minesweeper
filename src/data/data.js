@@ -2,7 +2,6 @@ class Data {
   _w = 12
   _h = 12
   _m = 28
-  _c = 0
 
   get w () {
     return this._w;
@@ -26,14 +25,6 @@ class Data {
 
   set m(value) {
     this._m = value;
-  }
-
-  get c () {
-    return this._c;
-  }
-  
-  set c(value) {
-    this._c = value;
   }
 }
 
