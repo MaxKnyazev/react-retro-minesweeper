@@ -52,11 +52,11 @@
 
   .field__element--mine {
     color: rgba(0, 0, 0, 0);
-    background: url(../../images/mine\(AI\)-2.svg) no-repeat;
+    background: url(../../images/mine\(AI\)-18.svg) no-repeat;
   }
 
   .field__element--marked {
     color: rgba(0, 0, 0, 0);
-    background: url(../../images/tour-24px.svg) no-repeat;
+    background: url(../../images/flag-11.svg) no-repeat;
     /* background-color: red; */
   }
