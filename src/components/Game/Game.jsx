@@ -118,7 +118,7 @@ class Game extends React.Component {
     let clickX = +e.target.id.split(':')[0];
     let clickY = +e.target.id.split(':')[1];
 
-    if ((this.state.arrGameField[clickX][clickY] === '-')||(this.state.arrGameField[clickX][clickY] === 9)) {
+    if ((this.state.arrGameField[clickX][clickY] === -1)||(this.state.arrGameField[clickX][clickY] === 9)) {
       e.target.classList.toggle('field__element--marked');
       this.setState((prevState) => ({
         countMines : prevState.countMines - 1,

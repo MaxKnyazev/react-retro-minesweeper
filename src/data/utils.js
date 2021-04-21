@@ -12,7 +12,7 @@ export const createGameField = (w, h) => {
 
   for (let i = 0; i < w; i++) {
     for (let j = 0; j < h; j++) {
-      field[i][j] = '-';
+      field[i][j] = -1;
     }
   }
   return field;
@@ -53,7 +53,7 @@ export const fillGameFieldWithMines = (field, w, h, quantity, clickX, clickY) =>
   while (countMine < quantity) {
     mineX = randomInteger(0, w - 1);
     mineY = randomInteger(0, h - 1);
-    if(field[mineX][mineY] === '-') {
+    if(field[mineX][mineY] === -1) {
       if ((Math.abs(clickX - mineX) > 1)||(Math.abs(clickY - mineY) > 1)) {
         field[mineX][mineY] = 9;
         countMine += 1;
@@ -119,7 +119,7 @@ export const checkMinesAroundElement = (field, x, y, w, h) => {
 // const fillGameFieldWithNumbers = (field, w, h) => {
 //   for (let i = 0; i < w; i++) {
 //     for (let j = 0; j < h; j++) {
-//       if (field[i][j] === '-') {
+//       if (field[i][j] === -1) {
 //         field[i][j] = checkMinesAroundElement(field, i, j, w, h)
 //       }
 //     }
@@ -205,11 +205,11 @@ export const renderEmptyElement = (field, w, h, x, y) => {
 export const gameOverDefeat = (field, w, h) => {
   for (let i = 0; i < w; i++) {
     for (let j = 0; j < h; j++) {
-      if (field[i][j] === '-') {
+      if (field[i][j] === -1) {
         field[i][j] = checkMinesAroundElement(field, i, j, w, h)
       }
 
-      // if (field[i][j] === '9') {
+      // if (field[i][j] === 9) {
 
       // }
     }
@@ -220,7 +220,7 @@ export const isItVictory = (field, w, h) => {
   let countEmptyElements = 0;
   for (let i = 0; i < w; i++) {
     for (let j = 0; j < h; j++) {
-      if (field[i][j] === '-') {
+      if (field[i][j] === -1) {
         countEmptyElements += 1;
       }
     }

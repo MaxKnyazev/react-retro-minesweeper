@@ -151,11 +151,11 @@ class GameField extends React.Component {
             return elem.map((elem, j) => {
               let s = `${i}:${j} `;
               let classes = `field__element`;
-              if ((elem >= 0)&&(elem < 9)&&(elem !== '-')) {
+              if ((elem >= 0)&&(elem < 9)&&(elem !== -1)) {
                 classes += ` field__element--${elem}`
               }
 
-              if ((elem === 9)||(elem === '-')) { 
+              if ((elem === 9)||(elem === -1)) { 
                 if ((elem === 9)&&(isGameOver)) {
                   classes += ' field__element--mine'
                 }
