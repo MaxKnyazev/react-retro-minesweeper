@@ -66,37 +66,37 @@ export const fillGameFieldWithMines = (field, w, h, quantity, clickX, clickY) =>
 export const checkMinesAroundElement = (field, x, y, w, h) => {
   let countMinesAroundElement = 0;
   if ((x-1 >= 0)&&(y-1 >= 0)) { 
-    if (field[x-1][y-1] === 9) { 
+    if ((field[x-1][y-1] === 9)||(field[x-1][y-1] === 59)) { 
       countMinesAroundElement += 1; 
     } 
   }
 
   if (y-1 >= 0) {
-    if (field[x][y-1] === 9) {
+    if ((field[x][y-1] === 9)||(field[x][y-1] === 59)) {
       countMinesAroundElement += 1; 
     }
   }
 
   if ((x+1 < w)&&(y-1 >= 0)) {
-    if (field[x+1][y-1] === 9) {
+    if ((field[x+1][y-1] === 9)||(field[x+1][y-1] === 59)) {
       countMinesAroundElement += 1;
     }
   }
 
   if (x-1 >= 0) {
-    if (field[x-1][y] === 9) {
+    if ((field[x-1][y] === 9)||(field[x-1][y] === 59)) {
       countMinesAroundElement += 1;
     }
   }
 
   if (x+1 < w) {
-    if (field[x+1][y] === 9) {
+    if ((field[x+1][y] === 9)||(field[x+1][y] === 59)) {
       countMinesAroundElement += 1;
     }
   }
 
   if ((x-1 >= 0)&&(y+1 < h)) {
-    if (field[x-1][y+1] === 9) {
+    if ((field[x-1][y+1] === 9)||(field[x-1][y+1] === 59)) {
       countMinesAroundElement += 1;
     }
   }
@@ -108,7 +108,7 @@ export const checkMinesAroundElement = (field, x, y, w, h) => {
   }
   
   if ((x+1 < w)&&(y+1 < h)) {
-    if (field[x+1][y+1] === 9) {
+    if ((field[x+1][y+1] === 9)||(field[x+1][y+1] === 59)) {
       countMinesAroundElement += 1;
     }
   }
@@ -226,6 +226,18 @@ export const isItVictory = (field, w, h) => {
     }
   }
   return !countEmptyElements;
+}
+
+export const checkMarkedElements = (field, w, h) => {
+  let countMarkedElements = 0;
+  for (let i = 0; i < w; i++) {
+    for (let j = 0; j < h; j++) {
+      if (field[i][j] >= 49) {
+        countMarkedElements += 1;
+      }
+    }
+  }
+  return countMarkedElements;
 }
 
 // const compareGameFieldWithTestField = (field, testField, w, h) => {

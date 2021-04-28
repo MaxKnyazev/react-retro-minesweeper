@@ -10,6 +10,7 @@ import {
   checkMinesAroundElement,
   isItVictory,
   gameOverDefeat,
+  checkMarkedElements,
 } from '../../data/utils';
 
 class Game extends React.Component {
@@ -67,21 +68,6 @@ class Game extends React.Component {
         console.log(this.state);
         gameOverDefeat(field, this.height, this.width);
 
-        // this.setState(prevState => {
-        //   return {
-        //     ...prevState,
-        //     isGameOver : true,
-        //     arrGameField : field,
-        //   }
-        // })
-
-        // this.setState(prevState => {
-        //   return {
-        //     isGameOver : !prevState.isGameOver,
-        //     arrGameField : field,
-        //   }
-        // })
-
         this.setState({
             isGameOver : true,
             arrGameField : field,
@@ -90,12 +76,12 @@ class Game extends React.Component {
       } else if (minesAround === 0) {
         field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
 
-        this.setState(prevState => {
-          return {
-            ...prevState,
+        this.setState(
+          {
+            countMines : this.quantityMines - checkMarkedElements(field, this.width, this.height),
             arrGameField : field,
           }
-        })
+        )
       } else {
         field = JSON.parse(JSON.stringify(this.state.arrGameField));
         field[clickX][clickY] = minesAround;
@@ -111,19 +97,33 @@ class Game extends React.Component {
     console.log(e.target.id);
     console.log('arrGameField');
     console.log(this.state.arrGameField);
+    console.log(`countMines = ${this.state.countMines}`)
   }
 
   rightClickHandler = (e) => {
     e.preventDefault();
-    let clickX = +e.target.id.split(':')[0];
-    let clickY = +e.target.id.split(':')[1];
-
-    if ((this.state.arrGameField[clickX][clickY] === -1)||(this.state.arrGameField[clickX][clickY] === 9)) {
-      e.target.classList.toggle('field__element--marked');
-      this.setState((prevState) => ({
-        countMines : prevState.countMines - 1,
-      }))
-      console.log('правый клик');
+    if (this.state.isGameStart) {
+      let field = JSON.parse(JSON.stringify(this.state.arrGameField));
+      let clickX = +e.target.id.split(':')[0];
+      let clickY = +e.target.id.split(':')[1];
+  
+      if ((field[clickX][clickY] === -1)||(field[clickX][clickY] >= 9)) {
+        if (field[clickX][clickY] < 49) {
+          field[clickX][clickY] += 50;  
+          this.setState((prevState) => ({
+            countMines : prevState.countMines - 1,
+            arrGameField : field,
+          }))
+        } else {
+          field[clickX][clickY] -= 50;
+          this.setState((prevState) => ({
+            countMines : prevState.countMines + 1,
+            arrGameField : field,
+          }))
+        }
+        e.target.classList.toggle('field__element--marked');
+        console.log('правый клик');
+      }
     }
   }
 
