@@ -131,7 +131,7 @@ class Game extends React.Component {
     console.log('arrGameField');
     console.log(this.state.arrGameField);
     return (
-      <section className = 'field__wrapper'>
+      <main className = 'main'>
         <div >
           <MineCounter count={this.state.countMines}/>
         </div>
@@ -141,7 +141,7 @@ class Game extends React.Component {
           options={this.state}
           rightClickHandler={this.rightClickHandler}
         />
-      </section>
+      </main>
     )
   }
 }

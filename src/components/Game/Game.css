@@ -1,4 +1,4 @@
-.field__wrapper {
+.main {
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
@@ -8,4 +8,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  margin-top: 2vh;
 }

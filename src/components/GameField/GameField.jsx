@@ -140,46 +140,48 @@ class GameField extends React.Component {
   render () {
     let {arrGameField, isGameOver} = this.props.options; 
     return (
-      <div className = 'field' style = {{
-        gridTemplateRows: `repeat(${this.height}, 1fr)`,
-        gridTemplateColumns: `repeat(${this.width}, 1fr)`,
-        minWidth: `${this.width * 1.5}rem`,
-        minHeight: `${this.height * 1.5}rem`
-      }}>
-        {
-          arrGameField.map((elem, i) => {
-            return elem.map((elem, j) => {
-              let s = `${i}:${j} `;
-              let classes = `field__element`;
-              if ((elem >= 0)&&(elem < 9)&&(elem !== -1)) {
-                classes += ` field__element--${elem}`
-              }
-
-              if ((elem === 9)||(elem === -1)) { 
-                if ((elem === 9)&&(isGameOver)) {
-                  classes += ' field__element--mine'
+      <div className = 'field__wrapper'>
+        <div className = 'field' style = {{
+          gridTemplateRows: `repeat(${this.height}, 1fr)`,
+          gridTemplateColumns: `repeat(${this.width}, 1fr)`,
+          // minWidth: `${this.width * 1.5}rem`,
+          // minHeight: `${this.height * 1.5}rem`
+        }}>
+          {
+            arrGameField.map((elem, i) => {
+              return elem.map((elem, j) => {
+                let s = `${i}:${j} `;
+                let classes = `field__element`;
+                if ((elem >= 0)&&(elem < 9)&&(elem !== -1)) {
+                  classes += ` field__element--${elem}`
                 }
 
-                elem = '' 
-              }
+                if ((elem === 9)||(elem === -1)) { 
+                  if ((elem === 9)&&(isGameOver)) {
+                    classes += ' field__element--mine'
+                  }
 
-              return (
-                <span 
-                  onClick = {this.props.leftClickHandler} 
-                  onContextMenu = {this.props.rightClickHandler}
-                  key = {s} 
-                  id = {s} 
-                  className = {classes}
-                >
-                  {/* <span> */}
-                    {elem}
-                  {/* </span> */}
-                </span>
-              )
+                  elem = '' 
+                }
+
+                return (
+                  <span 
+                    onClick = {this.props.leftClickHandler} 
+                    onContextMenu = {this.props.rightClickHandler}
+                    key = {s} 
+                    id = {s} 
+                    className = {classes}
+                  >
+                    {/* <span> */}
+                      {elem}
+                    {/* </span> */}
+                  </span>
+                )
+              })
             })
-          })
-          // this.state.arrGameField
-        }
+            // this.state.arrGameField
+          }
+        </div>
       </div>
     )
   }

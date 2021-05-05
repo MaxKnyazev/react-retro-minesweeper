@@ -1,3 +1,32 @@
+.field__wrapper {
+  max-width: 80vw;
+  max-height: 80vh;
+  overflow: scroll;
+
+  padding: 2px;
+
+  margin-top: 2vh;
+  border: 1px dashed rgba(0, 0, 0, 0,1);
+}
+
+.field__wrapper::-webkit-scrollbar {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+   
+   
+  .field__wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(8, 90, 0, 0.3);
+    /* outline: 1px dashed rgba(21, 255, 0, 0.3); */
+  }
+
+  .field__wrapper::-webkit-scrollbar-corner {
+    background-color: rgba(0, 56, 7, 0);
+    /* outline: 1px dashed rgba(21, 255, 0, 0.1); */
+    /* height: 0; */
+  }
+
+
 .field {
   display: grid;
 }
@@ -8,7 +37,8 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(21, 255, 0, 0);
-  /* width: 1vw; */
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .field__element--0 {

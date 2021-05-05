@@ -102,7 +102,7 @@ export const checkMinesAroundElement = (field, x, y, w, h) => {
   }
   
   if (y+1 < h) {
-    if (field[x][y+1] === 9) {
+    if ((field[x][y+1] === 9)||(field[x][y+1] === 59)) {
       countMinesAroundElement += 1;
     }
   }
