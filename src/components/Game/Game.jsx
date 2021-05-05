@@ -34,11 +34,11 @@ class Game extends React.Component {
   }
 
   componentDidUpdate () {
-    if (this.isGameOver) {
+    if (this.state.isGameOver) {
       console.log('GameOver (componentDidUpdate)');
     }
 
-    if ((isItVictory(this.state.arrGameField, this.height, this.width))&&(!this.isGameOver)) {
+    if ((isItVictory(this.state.arrGameField, this.height, this.width))&&(!this.state.isGameOver)) {
       console.log('it is victory');
       //TODO: зафигачить game over: победа
     }
