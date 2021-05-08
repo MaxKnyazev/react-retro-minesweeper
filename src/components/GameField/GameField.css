@@ -13,8 +13,7 @@
   width: 0.7rem;
   height: 0.7rem;
 }
-   
-   
+  
   .field__wrapper::-webkit-scrollbar-thumb {
     background-color: rgba(8, 90, 0, 0.3);
     /* outline: 1px dashed rgba(21, 255, 0, 0.3); */

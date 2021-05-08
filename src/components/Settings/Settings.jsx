@@ -15,57 +15,45 @@ class Settings extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     console.log(this.state);
     if (this.state.mines > this.state.maxMines) {
-      this.setState(() => {
-        return {
-          mines: this.state.maxMines,
-        };
+      this.setState({
+        mines: this.state.maxMines,
       });
     }
+
+    // if ((this.state.width * this.state.height - 9) !== prevState.maxMines) {
+    //   this.setState({
+    //     maxMines: this.state.width * this.state.height - 9,
+    //   });
+    // }
   }
 
   inputWidthHandler = (e) => {
     if (+e.target.value > 40) {
       e.target.value = 40;
-      this.setState(() => {
-        return {
-          width: 40,
-        };
+      this.setState({
+        width: 40,
       });
     }
 
-    this.setState((prevState) => {
-      return {
-        width: +e.target.value,
-        maxMines: +e.target.value * this.state.height - 9,
-      };
+    this.setState({
+      width: +e.target.value,
+      maxMines: +e.target.value * this.state.height - 9,
     });
 
     data.w = +e.target.value;
-
-    // if (this.state.mines > this.state.maxMines) {
-    //   this.setState((prevState) => {
-    //     return {
-    //       mines: this.state.maxMines,
-    //     }
-    //   })
-    // }
   };
 
   inputHeightHandler = (e) => {
     if (+e.target.value > 40) {
       e.target.value = 40;
-      this.setState(() => {
-        return {
-          height: 40,
-        };
+      this.setState({
+        height: 40,
       });
     }
 
-    this.setState((prevState) => {
-      return {
-        height: +e.target.value,
-        maxMines: this.state.width * +e.target.value - 9,
-      };
+    this.setState({
+      height: +e.target.value,
+      maxMines: this.state.width * +e.target.value - 9,
     });
 
     data.h = +e.target.value;
@@ -113,6 +101,66 @@ class Settings extends React.Component {
     });
   };
 
+  buttonWidthUp = () => {
+    this.setState((prevState) => {
+      if (prevState.width < 40) {
+        return {
+          width: prevState.width + 1,
+        }
+      }
+    })
+  }
+
+  buttonWidthDown = () => {
+    this.setState((prevState) => {
+      if (prevState.width > 4) {
+        return {
+          width: prevState.width - 1,
+        }
+      }
+    })
+  }
+
+  buttonHeightUp = () => {
+    this.setState((prevState) => {
+      if (prevState.height < 40) {
+        return {
+          height: prevState.height + 1,
+        }
+      }
+    })
+  }
+
+  buttonHeightDown = () => {
+    this.setState((prevState) => {
+      if (prevState.height > 4) {
+        return {
+          height: prevState.height - 1,
+        }
+      }
+    })
+  }
+
+  buttonMinesUp = () => {
+    this.setState((prevState) => {
+      if (prevState.mines > prevState.maxMines) {
+        return {
+          mines: prevState.mines - 1,
+        }
+      }
+    })
+  }
+
+  buttonMinesDown = () => {
+    this.setState((prevState) => {
+      if (prevState.mines > 1) {
+        return {
+          mines: prevState.mines - 1,
+        }
+      }
+    })
+  }
+
   render() {
     // console.log('data  --- Settings --- 1');
     // console.log(data);
@@ -120,52 +168,67 @@ class Settings extends React.Component {
     // console.log(data);
 
     return (
-      <section>
-        <h1>Settings</h1>
+      <section className='settings'>
+        <div className='settings__title'>Settings</div>
 
-        <Link to='/game'>Start game</Link>
+        <div className='settings__inputs'>
+          <div className='settings__label'>
+            Width :&nbsp;
+            <button onClick={this.buttonWidthDown} className='settings__edit'>&lt;</button>
+            
+            <input
+              className='settings__input'
+              onChange={this.inputWidthHandler}
+              type='number'
+              min='4'
+              max='40'
+              step='1'
+              value={this.state.width}
+            />
 
-        <br />
+            <button onClick={this.buttonWidthUp} className='settings__edit'>&gt;</button>
+          </div>
 
-        <label>
-          width:
-          <input
-            onChange={this.inputWidthHandler}
-            type='number'
-            min='4'
-            max='40'
-            step='1'
-            value={this.state.width}
-          />
-        </label>
+          <div className='settings__label'>
+            Height :&nbsp;
+            <button onClick={this.buttonHeightDown} className='settings__edit'>&lt;</button>
 
-        <br />
-        <label>
-          height:
-          <input
-            onChange={this.inputHeightHandler}
-            type='number'
-            min='4'
-            max='40'
-            step='1'
-            value={this.state.height}
-          />
-        </label>
+            <input
+              className='settings__input'
+              onChange={this.inputHeightHandler}
+              type='number'
+              min='4'
+              max='40'
+              step='1'
+              value={this.state.height}
+            />
 
-        <br />
-        <label>
-          mines:{' '}
-          <input
-            onChange={this.inputMinesHandler}
-            type='number'
-            min='1'
-            max={this.state.maxMines}
-            step='1'
-            value={this.state.mines}
-          />
-        </label>
+            <button onClick={this.buttonHeightUp} className='settings__edit'>&gt;</button>
+          </div>
 
-        <button onClick={this.clickHandler}>
+          <div className='settings__label'>
+            Mines :&nbsp;
+            <button onClick={this.buttonMinesDown} className='settings__edit'>&lt;</button>
+
+            <input
+              className='settings__input'
+              onChange={this.inputMinesHandler}
+              type='number'
+              min='1'
+              max={this.state.maxMines}
+              step='1'
+              value={this.state.mines}
+            />
+
+            <button onClick={this.buttonMinesUp} className='settings__edit'>&gt;</button>
+          </div>
+        </div>
+
+        {/* <Link to='/game'>Start game</Link> */}
+        <button 
+          onClick={this.clickHandler}
+          className='settings__button'
+        >
           Start Game
           {this.state.isDataCorrect ? <Redirect to='/game' /> : null}
         </button>
