@@ -5,18 +5,22 @@
   align-items: center;
 
   width: 100vw;
+  height: 100vh;
 }
 
   .settings__title {
     margin-top: 5vh;
     font-size: 80px;
-    margin-bottom: 5vh;
+    height: 10vh;
+    margin-bottom: 7.5vh;
   }
 
   .settings__inputs {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 60vw;
+    height: 20vh;
     align-items: center;
     margin-bottom: 5vh;
   }
@@ -53,7 +57,6 @@
       align-items: center;
       flex-direction: row;
 
-      font-family: A123, Helvetica, sans-serif;
       font-weight: bold;
       font-size: 22px;
 
@@ -71,7 +74,21 @@
         background-color: rgba(21, 255, 0, 1);
       }
 
+      .settings__edit--passive {
+        border: 3px solid rgb(78, 78, 78);
+        color: rgb(78, 78, 78);
+        cursor: auto;
+      }
+        .settings__edit--passive:hover {
+          font-weight: auto;
+          color: rgb(78, 78, 78);
+          background-color: rgba(24, 24, 24);
+        }
+
+
   .settings__button {
+    height: 10vh;
+    width: 20vw;
     cursor: pointer;
     font-size: 40px;
     font-family: A123;
@@ -79,6 +96,9 @@
     background-color: rgb(24, 24, 24);
     border: 7px solid rgba(21, 255, 0, 1);
     border-radius: 20px;
+
+    margin-bottom: 5vh;
+    margin-top: 17.5vh;
   }
     .settings__button:hover {
       font-weight: 900;
