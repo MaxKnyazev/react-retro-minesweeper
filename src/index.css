@@ -3,6 +3,11 @@
   src: url(./fonts/10368.ttf);
 }
 
+@font-face {
+  font-family: Pixel;
+  src: url(./fonts/Pixel.ttf);
+}
+
 /* @font-face {
   font-family: A123;
   src: url(./fonts/10890.otf);

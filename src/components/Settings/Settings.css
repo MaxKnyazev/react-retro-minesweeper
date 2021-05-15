@@ -1,0 +1,107 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+}
+
+  .settings__title {
+    margin-top: 5vh;
+    font-size: 80px;
+    height: 10vh;
+    margin-bottom: 7.5vh;
+  }
+
+  .settings__inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60vw;
+    height: 20vh;
+    align-items: center;
+    margin-bottom: 5vh;
+  }
+
+    .settings__label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      font-size: 35px;
+      font-family: A123;
+    }
+
+    .settings__input {
+      width: 5vw;
+      font-size: 35px;
+      background-color: rgb(24, 24, 24);
+      border: none;
+      outline: none;
+      text-align: center;
+
+      -moz-appearance: textfield;
+      -webkit-appearance: textfield;
+      appearance: textfield;
+    }
+      .settings__input::-webkit-outer-spin-button,
+      .settings__input::-webkit-inner-spin-button {
+        display: none;
+      }
+
+    .settings__edit {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+
+      font-weight: bold;
+      font-size: 22px;
+
+      width: 1.5rem;
+      height: 1.5rem;
+
+      cursor: pointer;
+      background-color: rgb(24, 24, 24);
+      border: 3px solid rgba(21, 255, 0, 1);
+      border-radius: 8px;
+    }
+      .settings__edit:hover {
+        font-weight: bold;
+        color: rgb(24, 24, 24);
+        background-color: rgba(21, 255, 0, 1);
+      }
+
+      .settings__edit--passive {
+        border: 3px solid rgb(78, 78, 78);
+        color: rgb(78, 78, 78);
+        cursor: auto;
+      }
+        .settings__edit--passive:hover {
+          font-weight: auto;
+          color: rgb(78, 78, 78);
+          background-color: rgba(24, 24, 24);
+        }
+
+
+  .settings__button {
+    height: 10vh;
+    width: 20vw;
+    cursor: pointer;
+    font-size: 40px;
+    font-family: A123;
+    padding: 20px;
+    background-color: rgb(24, 24, 24);
+    border: 7px solid rgba(21, 255, 0, 1);
+    border-radius: 20px;
+
+    margin-bottom: 5vh;
+    margin-top: 17.5vh;
+  }
+    .settings__button:hover {
+      font-weight: 900;
+      color: rgb(24, 24, 24);
+      background-color: rgba(21, 255, 0, 1);
+    }

@@ -1,11 +1,15 @@
+.field__main {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .field__wrapper {
   max-width: 80vw;
-  max-height: 80vh;
+  max-height: 70vh;
   overflow: scroll;
 
-  padding: 2px;
-
-  margin-top: 2vh;
   border: 1px dashed rgba(0, 0, 0, 0,1);
 }
 
@@ -13,8 +17,7 @@
   width: 0.7rem;
   height: 0.7rem;
 }
-   
-   
+  
   .field__wrapper::-webkit-scrollbar-thumb {
     background-color: rgba(8, 90, 0, 0.3);
     /* outline: 1px dashed rgba(21, 255, 0, 0.3); */

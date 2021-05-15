@@ -1,0 +1,31 @@
+.game__control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 70vw;
+  height: 20vh;
+}
+
+  .button__control {
+    width: 17vw;
+    height: 10vh;
+
+    cursor: pointer;
+    background-color: rgb(24, 24, 24);
+    border: 3px solid rgba(21, 255, 0, 1);
+    border-radius: 8px;
+  }
+    .button__control:hover {
+      background-color: rgba(21, 255, 0, 1);
+      color:rgb(24, 24, 24);
+      font-weight: bold;
+    }
+
+  .game__overInfo {
+    font-size: 50px;
+  }
+
+    .game__overInfo--defeat {
+      color: red;
+    }
