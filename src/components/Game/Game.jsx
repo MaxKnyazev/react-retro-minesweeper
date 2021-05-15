@@ -1,6 +1,7 @@
 import React from 'react';
 import GameField from '../GameField';
-import MineCounter from '../MineCounter';
+import GameControl from '../GameControl';
+import GameInfo from '../GameInfo';
 import './Game.css';
 import data from '../../data/data';
 import {
@@ -17,6 +18,8 @@ class Game extends React.Component {
   state = {
     isGameStart : false,
     isGameOver : false,
+    itIsVictory: false,
+    itIsDefeat: false,
     arrGameField : [[]],
     countMines : 0,
   }
@@ -40,7 +43,11 @@ class Game extends React.Component {
 
     if ((isItVictory(this.state.arrGameField, this.height, this.width))&&(!this.state.isGameOver)) {
       console.log('it is victory');
-      //TODO: зафигачить game over: победа
+      
+      this.setState({
+        itIsVictory : true,
+        isGameOver : true,
+      })
     }
   }
 
@@ -58,7 +65,7 @@ class Game extends React.Component {
       this.setState(prevState => {
         return {
           ...prevState,
-          isGameStart: true,
+          isGameStart : true,
           arrGameField : field,
         }
       })
@@ -70,6 +77,7 @@ class Game extends React.Component {
 
         this.setState({
             isGameOver : true,
+            itIsDefeat : true,
             arrGameField : field,
         })
 
@@ -102,7 +110,7 @@ class Game extends React.Component {
 
   rightClickHandler = (e) => {
     e.preventDefault();
-    if (this.state.isGameStart) {
+    if ((this.state.isGameStart)&&(!this.state.isGameOver)) {
       let field = JSON.parse(JSON.stringify(this.state.arrGameField));
       let clickX = +e.target.id.split(':')[0];
       let clickY = +e.target.id.split(':')[1];
@@ -132,14 +140,19 @@ class Game extends React.Component {
     console.log(this.state.arrGameField);
     return (
       <main className = 'main'>
-        <div >
-          <MineCounter count={this.state.countMines}/>
-        </div>
+        <GameInfo 
+          count={this.state.countMines}
+        />
 
         <GameField 
           leftClickHandler={this.leftClickHandler} 
           options={this.state}
           rightClickHandler={this.rightClickHandler}
+        />
+
+        <GameControl
+          itIsVictory={this.state.itIsVictory}
+          itIsDefeat={this.state.itIsDefeat}
         />
       </main>
     )

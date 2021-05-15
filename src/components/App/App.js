@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import Game from '../Game';
-import GameOver from '../GameOver';
 import Settings from '../Settings';
 
 class App extends React.Component {
@@ -19,10 +18,6 @@ class App extends React.Component {
         <Switch>
           <Route path='/game'>
             <Game />
-          </Route>
-
-          <Route path='/gameover'>
-            <GameOver />
           </Route>
 
           <Route path='/'>

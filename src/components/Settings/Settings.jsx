@@ -1,6 +1,6 @@
 import React from 'react';
 import './Settings.css';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import data from '../../data/data';
 import Error from '../Error';
 
