@@ -1,8 +1,10 @@
 .game__info {
-  width: 100vw;
+  width: 50vw;
   height: 10vh;
 
+  font-size: 2rem;
+
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }

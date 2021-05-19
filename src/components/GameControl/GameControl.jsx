@@ -27,6 +27,7 @@ class GameControl extends React.Component {
         {this.props.itIsDefeat ? <div className='game__overInfo game__overInfo--defeat'>Defeat</div> : null}
 
         <button
+          onClick={this.props.restartHandler}
           className='button__control' 
         >Restart</button>
       </section>

@@ -164,6 +164,10 @@ class GameField extends React.Component {
 
                     elem = '' 
                   }
+                  
+                  if (elem >= 49) {
+                    classes += ' field__element--marked'
+                  }
 
                   return (
                     <span 

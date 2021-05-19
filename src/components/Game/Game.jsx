@@ -22,8 +22,10 @@ class Game extends React.Component {
     itIsDefeat: false,
     arrGameField : [[]],
     countMines : 0,
+    timer : 0,
   }
 
+  timerCounter = null;
   width = data.w
   height = data.h
   quantityMines = data.m
@@ -43,7 +45,7 @@ class Game extends React.Component {
 
     if ((isItVictory(this.state.arrGameField, this.height, this.width))&&(!this.state.isGameOver)) {
       console.log('it is victory');
-      
+      clearInterval(this.timerCounter);
       this.setState({
         itIsVictory : true,
         isGameOver : true,
@@ -61,7 +63,6 @@ class Game extends React.Component {
     if (!this.state.isGameStart) {
       field = fillGameFieldWithMines(field, this.height, this.width, this.quantityMines, clickX, clickY);
       field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
-
       this.setState(prevState => {
         return {
           ...prevState,
@@ -69,12 +70,23 @@ class Game extends React.Component {
           arrGameField : field,
         }
       })
+
+      this.timerCounter = setInterval(() => {
+        console.log('timer start')
+        if ((this.state.isGameStart)&&(!this.state.isGameOver)) {
+            this.setState((prevState) => {
+              return {
+                timer: prevState.timer + 1,
+              }
+            })
+        }
+      }, 1000)
     } else if (!e.target.classList.contains('field__element--marked')) {
       if (this.state.arrGameField[clickX][clickY] === 9) {
         console.log('Game over');
         console.log(this.state);
         gameOverDefeat(field, this.height, this.width);
-
+        clearInterval(this.timerCounter);
         this.setState({
             isGameOver : true,
             itIsDefeat : true,
@@ -129,10 +141,25 @@ class Game extends React.Component {
             arrGameField : field,
           }))
         }
-        e.target.classList.toggle('field__element--marked');
+        // e.target.classList.toggle('field__element--marked');
         console.log('правый клик');
       }
     }
+  }
+
+  restartHandler = () => {
+    clearInterval(this.timerCounter);
+    this.timerCounter = null;
+
+    this.setState({
+      isGameStart : false,
+      isGameOver : false,
+      itIsVictory : false,
+      itIsDefeat : false,
+      timer : 0,
+      arrGameField : createGameField(this.height, this.width),
+      countMines : this.quantityMines
+    })
   }
 
   render () {
@@ -142,6 +169,7 @@ class Game extends React.Component {
       <main className = 'main'>
         <GameInfo 
           count={this.state.countMines}
+          timer={this.state.timer}
         />
 
         <GameField 
@@ -151,6 +179,7 @@ class Game extends React.Component {
         />
 
         <GameControl
+          restartHandler={this.restartHandler}
           itIsVictory={this.state.itIsVictory}
           itIsDefeat={this.state.itIsDefeat}
         />
