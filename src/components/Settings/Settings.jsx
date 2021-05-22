@@ -14,8 +14,7 @@ class Settings extends React.Component {
     showError: false,
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    console.log(this.state);
+  componentDidUpdate() {
     if (this.state.mines > this.state.maxMines) {
       this.setState({
         mines: this.state.maxMines,
@@ -58,7 +57,6 @@ class Settings extends React.Component {
       });
     }
 
-
     if (+e.target.value <= 40) {
       this.setState({
         height: +e.target.value,
@@ -70,15 +68,6 @@ class Settings extends React.Component {
         })
       }
     }
-
-
-    // if (this.state.mines > this.state.maxMines) {
-    //   this.setState((prevState) => {
-    //     return {
-    //       mines: this.state.maxMines,
-    //     }
-    //   })
-    // }
   };
 
   inputMinesHandler = (e) => {
@@ -214,11 +203,6 @@ class Settings extends React.Component {
   }
 
   render() {
-    // console.log('data  --- Settings --- 1');
-    // console.log(data);
-    // console.log('data  --- Settings --- 2');
-    // console.log(data);
-
     return (
       <section className='settings'>
         <div className='settings__title'>Settings</div>
@@ -296,7 +280,6 @@ class Settings extends React.Component {
           </div>
         </div>
 
-        {/* <Link to='/game'>Start game</Link> */}
         <button 
           onClick={this.clickHandler}
           className='settings__button'

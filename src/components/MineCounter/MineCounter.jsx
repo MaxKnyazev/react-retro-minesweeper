@@ -1,14 +1,13 @@
 import React from 'react';
 import './MineCounter.css';
-// import data from '../../data/data';
 
 class MineCounter extends React.Component {
   render () {
-    console.log(`this.props`);
-    console.log(this.props);
+    const {count} = this.props;
+
     return (
       <div className='mine__counter'>
-        {this.props.count}
+        {count}
       </div>
     );
   }

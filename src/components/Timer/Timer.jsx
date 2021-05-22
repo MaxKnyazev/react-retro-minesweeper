@@ -1,16 +1,16 @@
 import React from 'react';
 import './Timer.css';
-// import data from '../../data/data';
 
 class Timer extends React.Component {
   render () {
+    const {timer} = this.props; 
     return (
       <div className='timer'>
-        {(this.props.timer >= 0) && (this.props.timer <= 9) && `000${this.props.timer}`}
-        {(this.props.timer >= 10) && (this.props.timer <= 99) && `00${this.props.timer}`}
-        {(this.props.timer >= 100) && (this.props.timer <= 999) && `0${this.props.timer}`}
-        {(this.props.timer >= 1000) && (this.props.timer <= 9999) && `${this.props.timer}`}
-        {(this.props.timer >= 9999) && `9999`}
+        {(timer >= 0) && (timer <= 9) && `000${timer}`}
+        {(timer >= 10) && (timer <= 99) && `00${timer}`}
+        {(timer >= 100) && (timer <= 999) && `0${timer}`}
+        {(timer >= 1000) && (timer <= 9999) && `${timer}`}
+        {(timer >= 9999) && `9999`}
       </div>
     );
   }

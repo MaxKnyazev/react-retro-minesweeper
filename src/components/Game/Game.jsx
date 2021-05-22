@@ -39,12 +39,7 @@ class Game extends React.Component {
   }
 
   componentDidUpdate () {
-    if (this.state.isGameOver) {
-      console.log('GameOver (componentDidUpdate)');
-    }
-
     if ((isItVictory(this.state.arrGameField, this.height, this.width))&&(!this.state.isGameOver)) {
-      console.log('it is victory');
       clearInterval(this.timerCounter);
       this.setState({
         itIsVictory : true,
@@ -63,6 +58,7 @@ class Game extends React.Component {
     if (!this.state.isGameStart) {
       field = fillGameFieldWithMines(field, this.height, this.width, this.quantityMines, clickX, clickY);
       field = renderEmptyElement(field, this.height, this.width, clickX, clickY);
+
       this.setState(prevState => {
         return {
           ...prevState,
@@ -72,7 +68,7 @@ class Game extends React.Component {
       })
 
       this.timerCounter = setInterval(() => {
-        console.log('timer start')
+        // console.log('timer start')
         if ((this.state.isGameStart)&&(!this.state.isGameOver)) {
             this.setState((prevState) => {
               return {
@@ -102,6 +98,7 @@ class Game extends React.Component {
             arrGameField : field,
           }
         )
+        console.log('Пустой элемент 3')
       } else {
         field = JSON.parse(JSON.stringify(this.state.arrGameField));
         field[clickX][clickY] = minesAround;
@@ -145,6 +142,12 @@ class Game extends React.Component {
         console.log('правый клик');
       }
     }
+
+
+    console.log(e.target.id);
+    console.log('arrGameField');
+    console.log(this.state.arrGameField);
+    console.log(`countMines = ${this.state.countMines}`)
   }
 
   restartHandler = () => {
@@ -163,8 +166,6 @@ class Game extends React.Component {
   }
 
   render () {
-    console.log('arrGameField');
-    console.log(this.state.arrGameField);
     return (
       <main className = 'main'>
         <GameInfo 

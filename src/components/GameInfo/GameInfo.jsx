@@ -6,6 +6,8 @@ import data from '../../data/data';
 
 class GameInfo extends React.Component {
   render () {
+    const {timer, count} = this.props;
+
     return (
       <section 
         className='game__info'
@@ -14,9 +16,9 @@ class GameInfo extends React.Component {
           minWidth: `20vw`
         }}
       >
-        <Timer timer={this.props.timer}/>
+        <Timer timer={timer}/>
 
-        <MineCounter count={this.props.count}/>
+        <MineCounter count={count}/>
       </section>
     );
   }

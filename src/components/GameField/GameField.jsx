@@ -151,7 +151,7 @@ class GameField extends React.Component {
             {
               arrGameField.map((elem, i) => {
                 return elem.map((elem, j) => {
-                  let s = `${i}:${j} `;
+                  let key = `${i}:${j} `;
                   let classes = `field__element`;
                   if ((elem >= 0)&&(elem < 9)&&(elem !== -1)) {
                     classes += ` field__element--${elem}`
@@ -173,8 +173,8 @@ class GameField extends React.Component {
                     <span 
                       onClick = {this.props.leftClickHandler} 
                       onContextMenu = {this.props.rightClickHandler}
-                      key = {s} 
-                      id = {s} 
+                      key = {key} 
+                      id = {key} 
                       className = {classes}
                     >
                       {/* <span> */}

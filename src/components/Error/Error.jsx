@@ -1,11 +1,8 @@
 import React from 'react';
 import './Error.css';
-// import data from '../../data/data';
 
 class Error extends React.Component {
   render () {
-    // console.log(`this.props`);
-    // console.log(this.props);
     return (
       <div className='error'>
         <p>Error! Data is incorrect!</p>
