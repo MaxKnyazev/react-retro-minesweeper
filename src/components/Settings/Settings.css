@@ -85,23 +85,35 @@
           background-color: rgba(24, 24, 24);
         }
 
-
   .settings__button {
     height: 10vh;
-    width: 20vw;
+    width: 270px;
     cursor: pointer;
-    font-size: 40px;
+    font-size: 1.3rem;
     font-family: A123;
     padding: 20px;
     background-color: rgb(24, 24, 24);
     border: 7px solid rgba(21, 255, 0, 1);
     border-radius: 20px;
-
     margin-bottom: 5vh;
     margin-top: 17.5vh;
+    transition: color 200ms linear, background-color 200ms linear;
   }
     .settings__button:hover {
       font-weight: 900;
       color: rgb(24, 24, 24);
       background-color: rgba(21, 255, 0, 1);
     }
+
+@media screen and (max-width: 400px) {
+
+  .settings__button {
+    width: 210px;
+    font-size: 0.9rem;
+  }
+
+  .settings__title {
+    font-size: 45px;
+  }
+
+}
