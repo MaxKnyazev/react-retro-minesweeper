@@ -19,23 +19,65 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 60vw;
+    width: 320px;
     height: 20vh;
     align-items: center;
     margin-bottom: 5vh;
   }
 
-    .settings__label {
+    .settings__block {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      
       font-size: 35px;
       font-family: A123;
+      width: 100%;
     }
 
-    .settings__input {
-      width: 5vw;
+    .settings__label {
+      font-size: 35px;
+    }
+
+   .edit-elems {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     min-width: 160px;
+   }
+    .edit-elems__button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      font-weight: bold;
+      font-size: 22px;
+      width: 1.5rem;
+      height: 1.5rem;
+      cursor: pointer;
+      background-color: rgb(24, 24, 24);
+      border: 3px solid rgba(21, 255, 0, 1);
+      border-radius: 8px;
+      transition: color 200ms linear, background-color 200ms linear;
+    }
+      .edit-elems__button:hover {
+        font-weight: bold;
+        color: rgb(24, 24, 24);
+        background-color: rgba(21, 255, 0, 1);
+      }
+
+      .edit-elems__button--passive {
+        border: 3px solid rgb(78, 78, 78);
+        color: rgb(78, 78, 78);
+        cursor: auto;
+      }
+        .edit-elems__button--passive:hover {
+          font-weight: normal;
+          color: rgb(78, 78, 78);
+          background-color: rgb(24, 24, 24);
+        }
+
+    .edit-elems__input {
+      width: 65px;
       font-size: 35px;
       background-color: rgb(24, 24, 24);
       border: none;
@@ -44,46 +86,12 @@
 
       -moz-appearance: textfield;
       -webkit-appearance: textfield;
-      appearance: textfield;
+      appearance: auto;
     }
-      .settings__input::-webkit-outer-spin-button,
-      .settings__input::-webkit-inner-spin-button {
-        display: none;
-      }
-
-    .settings__edit {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: row;
-
-      font-weight: bold;
-      font-size: 22px;
-
-      width: 1.5rem;
-      height: 1.5rem;
-
-      cursor: pointer;
-      background-color: rgb(24, 24, 24);
-      border: 3px solid rgba(21, 255, 0, 1);
-      border-radius: 8px;
+    .edit-elems__input::-webkit-outer-spin-button,
+    .edit-elems__input::-webkit-inner-spin-button {
+      display: none;
     }
-      .settings__edit:hover {
-        font-weight: bold;
-        color: rgb(24, 24, 24);
-        background-color: rgba(21, 255, 0, 1);
-      }
-
-      .settings__edit--passive {
-        border: 3px solid rgb(78, 78, 78);
-        color: rgb(78, 78, 78);
-        cursor: auto;
-      }
-        .settings__edit--passive:hover {
-          font-weight: auto;
-          color: rgb(78, 78, 78);
-          background-color: rgba(24, 24, 24);
-        }
 
   .settings__button {
     height: 10vh;
@@ -98,6 +106,8 @@
     margin-bottom: 5vh;
     margin-top: 17.5vh;
     transition: color 200ms linear, background-color 200ms linear;
+    display: flex;
+    align-items: center;
   }
     .settings__button:hover {
       font-weight: 900;
@@ -114,6 +124,16 @@
 
   .settings__title {
     font-size: 45px;
+  }
+
+  .settings__block {
+    display: block;
+    width: 75%;
+  }
+
+  .settings__label {
+    font-size: 35px;
+    text-align: center;
   }
 
 }

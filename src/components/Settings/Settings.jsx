@@ -108,7 +108,7 @@ class Settings extends React.Component {
     });
   };
 
-  clickHandler = (e) => {
+  clickHandler = () => {
     if (
       this.state.width  >= 4 && this.state.width  <= 40 &&
       this.state.height >= 4 && this.state.height <= 40 &&
@@ -220,107 +220,126 @@ class Settings extends React.Component {
         {this.state.showError ? (
           <Error />
         ) : (
-          <div style={{ height: '17.5vh' }}></div>
+          <div style={{height: '17.5vh'}}/>
         )}
 
         <div className='settings__inputs'>
-          <div className='settings__label'>
-            Width :&nbsp;
-            <button
-              onClick={this.buttonWidthDown}
-              className={
-                this.state.width < 5
-                  ? 'settings__edit settings__edit--passive'
-                  : 'settings__edit'
-              }
-            >
-              &lt;
-            </button>
-            <input
-              className='settings__input'
-              onChange={this.inputWidthHandler}
-              type='number'
-              min='4'
-              max='40'
-              step='1'
-              value={this.state.width}
-            />
-            <button
-              onClick={this.buttonWidthUp}
-              className={
-                this.state.width > 39
-                  ? 'settings__edit settings__edit--passive'
-                  : 'settings__edit'
-              }
-            >
-              &gt;
-            </button>
+
+
+
+
+
+
+          <div className='settings__block'>
+            <div className='settings__label'>Width :</div>
+
+            <div className='settings__edit-elems edit-elems'>
+              <button
+                onClick={this.buttonWidthDown}
+                className={
+                  this.state.width < 5
+                    ? 'edit-elems__button edit-elems__button--passive'
+                    : 'edit-elems__button'
+                }
+              >
+                &lt;
+              </button>
+              <input
+                className='edit-elems__input'
+                onChange={this.inputWidthHandler}
+                type='number'
+                min='4'
+                max='40'
+                step='1'
+                value={this.state.width}
+              />
+              <button
+                onClick={this.buttonWidthUp}
+                className={
+                  this.state.width > 39
+                    ? 'edit-elems__button edit-elems__button--passive'
+                    : 'edit-elems__button'
+                }
+              >
+                &gt;
+              </button>
+            </div>
           </div>
 
-          <div className='settings__label'>
-            Height :&nbsp;
-            <button
-              onClick={this.buttonHeightDown}
-              className={
-                this.state.height < 5
-                  ? 'settings__edit settings__edit--passive'
-                  : 'settings__edit'
-              }
-            >
-              &lt;
-            </button>
-            <input
-              className='settings__input'
-              onChange={this.inputHeightHandler}
-              type='number'
-              min='4'
-              max='40'
-              step='1'
-              value={this.state.height}
-            />
-            <button
-              onClick={this.buttonHeightUp}
-              className={
-                this.state.height > 39
-                  ? 'settings__edit settings__edit--passive'
-                  : 'settings__edit'
-              }
-            >
-              &gt;
-            </button>
+
+
+
+
+
+
+          <div className='settings__block'>
+            <div className='settings__label'>Height :</div>
+            <div className='settings__edit-elems edit-elems'>
+              <button
+                onClick={this.buttonHeightDown}
+                className={
+                  this.state.height < 5
+                    ? 'edit-elems__button edit-elems__button--passive'
+                    : 'edit-elems__button'
+                }
+              >
+                &lt;
+              </button>
+              <input
+                className='edit-elems__input'
+                onChange={this.inputHeightHandler}
+                type='number'
+                min='4'
+                max='40'
+                step='1'
+                value={this.state.height}
+              />
+              <button
+                onClick={this.buttonHeightUp}
+                className={
+                  this.state.height > 39
+                    ? 'edit-elems__button edit-elems__button--passive'
+                    : 'edit-elems__button'
+                }
+              >
+                &gt;
+              </button>
+            </div>
           </div>
 
-          <div className='settings__label'>
-            Mines :&nbsp;
-            <button
-              onClick={this.buttonMinesDown}
-              className={
-                this.state.mines < 2
-                  ? 'settings__edit settings__edit--passive'
-                  : 'settings__edit'
-              }
-            >
-              &lt;
-            </button>
-            <input
-              className='settings__input'
-              onChange={this.inputMinesHandler}
-              type='number'
-              min='1'
-              max={this.state.maxMines}
-              step='1'
-              value={this.state.mines}
-            />
-            <button
-              onClick={this.buttonMinesUp}
-              className={
-                this.state.mines > this.state.maxMines - 1
-                  ? 'settings__edit settings__edit--passive'
-                  : 'settings__edit'
-              }
-            >
-              &gt;
-            </button>
+          <div className='settings__block'>
+            <div className='settings__label'>Mines :</div>
+            <div className='settings__edit-elems edit-elems'>
+              <button
+                onClick={this.buttonMinesDown}
+                className={
+                  this.state.mines < 2
+                    ? 'edit-elems__button edit-elems__button--passive'
+                    : 'edit-elems__button'
+                }
+              >
+                &lt;
+              </button>
+              <input
+                className='edit-elems__input'
+                onChange={this.inputMinesHandler}
+                type='number'
+                min='1'
+                max={this.state.maxMines}
+                step='1'
+                value={this.state.mines}
+              />
+              <button
+                onClick={this.buttonMinesUp}
+                className={
+                  this.state.mines > this.state.maxMines - 1
+                    ? 'edit-elems__button edit-elems__button--passive'
+                    : 'edit-elems__button'
+                }
+              >
+                &gt;
+              </button>
+            </div>
           </div>
         </div>
 
