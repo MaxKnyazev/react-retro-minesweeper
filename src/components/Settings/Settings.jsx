@@ -51,7 +51,7 @@ class Settings extends React.Component {
         });
       }
     }
-  };
+  }
 
   inputHeightHandler = (e) => {
     if (+e.target.value > 40) {
@@ -80,7 +80,7 @@ class Settings extends React.Component {
     //     }
     //   })
     // }
-  };
+  }
 
   inputMinesHandler = (e) => {
     if (+e.target.value < 1) {
@@ -106,7 +106,8 @@ class Settings extends React.Component {
     this.setState({
       mines: +e.target.value,
     });
-  };
+
+  }
 
   clickHandler = () => {
     if (
@@ -150,7 +151,7 @@ class Settings extends React.Component {
         });
       }
     }
-  };
+  }
 
   buttonWidthUp = () => {
     this.setState(() => {
@@ -160,7 +161,7 @@ class Settings extends React.Component {
         };
       }
     });
-  };
+  }
 
   buttonWidthDown = () => {
     this.setState(() => {
@@ -170,7 +171,7 @@ class Settings extends React.Component {
         };
       }
     });
-  };
+  }
 
   buttonHeightUp = () => {
     this.setState(() => {
@@ -180,7 +181,7 @@ class Settings extends React.Component {
         };
       }
     });
-  };
+  }
 
   buttonHeightDown = () => {
     this.setState(() => {
@@ -190,7 +191,7 @@ class Settings extends React.Component {
         };
       }
     });
-  };
+  }
 
   buttonMinesUp = () => {
     this.setState(() => {
@@ -200,17 +201,28 @@ class Settings extends React.Component {
         };
       }
     });
-  };
+  }
 
+  // buttonMinesDown = () => {
+  //   this.setState(() => {
+  //     if (this.state.mines > 1) {
+  //       return {
+  //         mines: this.state.mines - 1,
+  //       };
+  //     }
+  //   });
+  // };
+
+  //TODO ::: переделать также и остальные функции
+  //TODO ::: протестировать изменения
   buttonMinesDown = () => {
-    this.setState(() => {
-      if (this.state.mines > 1) {
-        return {
-          mines: this.state.mines - 1,
-        };
-      }
-    });
-  };
+    console.log(`------------------click buttonMinesDown`);
+    if (this.state.mines > 1) {
+      this.setState({
+        mines: this.state.mines - 1,
+      })
+    }
+  }
 
   render() {
     return (
@@ -306,6 +318,10 @@ class Settings extends React.Component {
               </button>
             </div>
           </div>
+
+
+
+
 
           <div className='settings__block'>
             <div className='settings__label'>Mines :</div>
