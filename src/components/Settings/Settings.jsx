@@ -72,14 +72,6 @@ class Settings extends React.Component {
         });
       }
     }
-
-    // if (this.state.mines > this.state.maxMines) {
-    //   this.setState((prevState) => {
-    //     return {
-    //       mines: this.state.maxMines,
-    //     }
-    //   })
-    // }
   }
 
   inputMinesHandler = (e) => {
@@ -154,53 +146,43 @@ class Settings extends React.Component {
   }
 
   buttonWidthUp = () => {
-    this.setState(() => {
-      if (this.state.width < 40) {
-        return {
-          width: this.state.width + 1,
-        };
-      }
-    });
+    if (this.state.width < 40) {
+      this.setState({
+        width: this.state.width + 1,
+      })
+    }
   }
 
   buttonWidthDown = () => {
-    this.setState(() => {
-      if (this.state.width > 4) {
-        return {
-          width: this.state.width - 1,
-        };
-      }
-    });
+    if (this.state.width > 4) {
+      this.setState({
+        width: this.state.width - 1,
+      })
+    }
   }
 
   buttonHeightUp = () => {
-    this.setState(() => {
-      if (this.state.height < 40) {
-        return {
-          height: this.state.height + 1,
-        };
-      }
-    });
+    if (this.state.height < 40) {
+      this.setState({
+        height: this.state.height + 1,
+      })
+    }
   }
 
   buttonHeightDown = () => {
-    this.setState(() => {
-      if (this.state.height > 4) {
-        return {
-          height: this.state.height - 1,
-        };
-      }
-    });
+    if (this.state.height > 4) {
+      this.setState({
+        height: this.state.height - 1,
+      })
+    }
   }
 
   buttonMinesUp = () => {
-    this.setState(() => {
-      if (this.state.mines < this.state.maxMines) {
-        return {
-          mines: this.state.mines + 1,
-        };
-      }
-    });
+    if (this.state.mines < this.state.maxMines) {
+      this.setState({
+        mines: this.state.mines + 1,
+      })
+    }
   }
 
   // buttonMinesDown = () => {
@@ -213,10 +195,7 @@ class Settings extends React.Component {
   //   });
   // };
 
-  //TODO ::: переделать также и остальные функции
-  //TODO ::: протестировать изменения
   buttonMinesDown = () => {
-    console.log(`------------------click buttonMinesDown`);
     if (this.state.mines > 1) {
       this.setState({
         mines: this.state.mines - 1,
