@@ -81,7 +81,7 @@ class Game extends React.Component {
             })
         }
       }, 1000)
-    } else if (!e.target.classList.contains('field__element--marked')) {
+    } else if ((!e.target.classList.contains('field__element--marked'))&&(!this.state.isGameOver)) {
       if (this.state.arrGameField[clickX][clickY] === 9) {
         console.log('Game over');
         console.log(this.state);

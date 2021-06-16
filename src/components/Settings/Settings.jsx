@@ -12,6 +12,7 @@ class Settings extends React.Component {
     maxMines: data.w * data.h - 9,
     isDataCorrect: false,
     showError: false,
+    test: data.h,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -33,71 +34,159 @@ class Settings extends React.Component {
   }
 
   inputWidthHandler = (e) => {
-    if (+e.target.value > 40) {
-      e.target.value = 40;
+    let _val = e.target.value;
+    _val = _val.split('').filter(elem => (elem.charCodeAt() >= 48)&&(elem.charCodeAt() <= 57)).join('');
+    console.log(_val);
+
+    if (_val === '') {
       this.setState({
-        width: 40,
-      });
+        width: 4,
+      })
     }
 
-    if (+e.target.value <= 40) {
-      this.setState({
-        width: +e.target.value,
-      });
-
-      if (+e.target.value * this.state.height - 9 < 1) {
-        this.setState({
-          maxMines: 1,
-        });
+    if ((+_val >= 0)&&(+_val <= 40)) {
+      if (_val.length === 1) {
+        if (_val === '0') {
+          this.setState({
+            width: 4,
+          })
+        } else {
+          this.setState({
+            width: +_val,
+          })
+        }
       }
+
+      if (_val.length === 2) {
+        if (+_val === 0) {
+          this.setState({
+            width: 4,
+          })
+        } else {
+          this.setState({
+            width: +_val,
+          })
+        }
+      }
+    }
+
+    if (+_val > 40) {
+      this.setState({
+        width: 40,
+      })
     }
   }
 
   inputHeightHandler = (e) => {
-    if (+e.target.value > 40) {
-      e.target.value = 40;
+    let _val = e.target.value;
+    _val = _val.split('').filter(elem => (elem.charCodeAt() >= 48)&&(elem.charCodeAt() <= 57)).join('');
+    console.log(_val);
+
+    if (_val === '') {
       this.setState({
-        height: 40,
-      });
+        height: 4,
+      })
     }
 
-    if (+e.target.value <= 40) {
-      this.setState({
-        height: +e.target.value,
-      });
-
-      if (+e.target.value * this.state.width - 9 < 1) {
-        this.setState({
-          maxMines: 1,
-        });
+    if ((+_val >= 0)&&(+_val <= 40)) {
+      if (_val.length === 1) {
+        if (_val === '0') {
+          this.setState({
+            height: 4,
+          })
+        } else {
+          this.setState({
+            height: +_val,
+          })
+        }
       }
+
+      if (_val.length === 2) {
+        if (+_val === 0) {
+          this.setState({
+            height: 4,
+          })
+        } else {
+          this.setState({
+            height: +_val,
+          })
+        }
+      }
+    }
+
+    if (+_val > 40) {
+      this.setState({
+        height: 40,
+      })
     }
   }
 
   inputMinesHandler = (e) => {
-    if (+e.target.value < 1) {
-      e.target.value = 1;
+    let _val = e.target.value;
+    _val = _val.split('').filter(elem => (elem.charCodeAt() >= 48)&&(elem.charCodeAt() <= 57)).join('');
+    console.log(_val);
+
+    if (_val === '') {
       this.setState({
         mines: 1,
-      });
+      })
     }
 
-    if (+e.target.value > this.state.maxMines) {
-      e.target.value = this.state.maxMines;
+    if ((+_val >= 0)&&(+_val <= this.state.maxMines)) {
+      if (_val.length === 1) {
+        if (_val === '0') {
+          this.setState({
+            mines: 1,
+          })
+        } else {
+          this.setState({
+            mines: +_val,
+          })
+        }
+      }
+
+      if (_val.length >= 2) {
+        if (+_val === 0) {
+          this.setState({
+            mines: 1,
+          })
+        } else {
+          this.setState({
+            mines: +_val,
+          })
+        }
+      }
+    }
+
+    if (+_val > this.state.maxMines) {
       this.setState({
         mines: this.state.maxMines,
-      });
+      })
     }
 
-    if (this.state.mines > this.state.maxMines) {
-      this.setState({
-        mines: this.state.maxMines,
-      });
-    }
+    // if (+e.target.value < 1) {
+    //   e.target.value = 1;
+    //   this.setState({
+    //     mines: 1,
+    //   });
+    // }
 
-    this.setState({
-      mines: +e.target.value,
-    });
+    // if (+e.target.value > this.state.maxMines) {
+    //   e.target.value = this.state.maxMines;
+    //   this.setState({
+    //     mines: this.state.maxMines,
+    //   });
+    // }
+
+    // if (this.state.mines > this.state.maxMines) {
+    //   this.setState({
+    //     mines: this.state.maxMines,
+    //   });
+    // }
+
+    // this.setState({
+    //   mines: +e.target.value,
+    // });
 
   }
 
@@ -185,21 +274,18 @@ class Settings extends React.Component {
     }
   }
 
-  // buttonMinesDown = () => {
-  //   this.setState(() => {
-  //     if (this.state.mines > 1) {
-  //       return {
-  //         mines: this.state.mines - 1,
-  //       };
-  //     }
-  //   });
-  // };
-
   buttonMinesDown = () => {
     if (this.state.mines > 1) {
       this.setState({
         mines: this.state.mines - 1,
       })
+    }
+  }
+
+  xxx = (e) => {
+
+    if (e.target.value.charCode >= 48 && e.target.value.charCode <= 57) {
+      console.log('*********************')
     }
   }
 
@@ -215,9 +301,6 @@ class Settings extends React.Component {
         )}
 
         <div className='settings__inputs'>
-
-
-
 
 
 
@@ -238,10 +321,7 @@ class Settings extends React.Component {
               <input
                 className='edit-elems__input'
                 onChange={this.inputWidthHandler}
-                type='number'
-                min='4'
-                max='40'
-                step='1'
+                type='text'
                 value={this.state.width}
               />
               <button
@@ -256,10 +336,6 @@ class Settings extends React.Component {
               </button>
             </div>
           </div>
-
-
-
-
 
 
 
@@ -279,10 +355,7 @@ class Settings extends React.Component {
               <input
                 className='edit-elems__input'
                 onChange={this.inputHeightHandler}
-                type='number'
-                min='4'
-                max='40'
-                step='1'
+                type='text'
                 value={this.state.height}
               />
               <button
@@ -297,8 +370,6 @@ class Settings extends React.Component {
               </button>
             </div>
           </div>
-
-
 
 
 
@@ -318,10 +389,7 @@ class Settings extends React.Component {
               <input
                 className='edit-elems__input'
                 onChange={this.inputMinesHandler}
-                type='number'
-                min='1'
-                max={this.state.maxMines}
-                step='1'
+                type='text'
                 value={this.state.mines}
               />
               <button
@@ -337,6 +405,8 @@ class Settings extends React.Component {
             </div>
           </div>
         </div>
+
+
 
         <button onClick={this.clickHandler} className='settings__button'>
           Start Game

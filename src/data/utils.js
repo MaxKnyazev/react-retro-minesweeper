@@ -220,7 +220,7 @@ export const isItVictory = (field, w, h) => {
   let countEmptyElements = 0;
   for (let i = 0; i < w; i++) {
     for (let j = 0; j < h; j++) {
-      if (field[i][j] === -1) {
+      if ((field[i][j] === -1)||(field[i][j] === 49)) {
         countEmptyElements += 1;
       }
     }
