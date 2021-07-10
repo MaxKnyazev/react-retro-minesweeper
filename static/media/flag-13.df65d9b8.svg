@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Слой_1" x="0" y="0" version="1.1" viewBox="0 0 1800 1800" xml:space="preserve">
+  <style>
+    .st1{fill:#1dc100}.st2{fill:#15ff00}
+  </style>
+
+  <animate 
+  attributeType="CSS" 
+  attributeName="scale" 
+  dur="5s" 
+  repeatCount="indefinite"
+  values="0;100;0"
+/>
+<!-- <animateTransform 
+  attributeName="transform"
+  type="rotate"
+  from="0"
+  to="360"
+  begin="0s"
+  dur="12s"
+  repeatCount="indefinite"
+/> -->
+
+  <path fill="#145b00" d="M720 1332h648v90H720v-90zm-72 108h792v72H648v-72z"/>
+  <path d="M1080 360h144v90h-144v-90z" class="st1"/>
+  <path d="M648 684h432v90H648v-90zm216-216h216v90H864v-90zM432 576h648v90H432v-90z" class="st2"/>
+  <path d="M1080 1224h144v90h-144v-90z" class="st1"/>
+  <path d="M648 504h432v54H648v-54zm216 288h216v72H864v-72z" class="st2"/>
+  <path d="M1080 468h144v90h-144v-90z" class="st1"/>
+  <path d="M648 576h216v90H648v-90zm216 0h216v90H864v-90z" class="st2"/>
+  <path d="M1080 576h144v90h-144v-90zm0 108h144v90h-144v-90zm0 108h144v90h-144v-90zm0 108h144v90h-144v-90zm0 108h144v90h-144v-90zm0 108h144v90h-144v-90z" class="st1"/>
+  <path d="M864 684h216v90H864v-90z" class="st2"/>
+</svg>

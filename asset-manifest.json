@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-retro-minesweeper/static/css/main.1a8bd139.chunk.css",
+    "main.js": "/react-retro-minesweeper/static/js/main.adc77d99.chunk.js",
+    "main.js.map": "/react-retro-minesweeper/static/js/main.adc77d99.chunk.js.map",
+    "runtime-main.js": "/react-retro-minesweeper/static/js/runtime-main.6f7d504b.js",
+    "runtime-main.js.map": "/react-retro-minesweeper/static/js/runtime-main.6f7d504b.js.map",
+    "static/js/2.32727949.chunk.js": "/react-retro-minesweeper/static/js/2.32727949.chunk.js",
+    "static/js/2.32727949.chunk.js.map": "/react-retro-minesweeper/static/js/2.32727949.chunk.js.map",
+    "index.html": "/react-retro-minesweeper/index.html",
+    "static/css/main.1a8bd139.chunk.css.map": "/react-retro-minesweeper/static/css/main.1a8bd139.chunk.css.map",
+    "static/js/2.32727949.chunk.js.LICENSE.txt": "/react-retro-minesweeper/static/js/2.32727949.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/react-retro-minesweeper/static/media/Pixel.e432effa.ttf",
+    "static/media/GameField.css": "/react-retro-minesweeper/static/media/mine(AI)-18.85ae589e.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6f7d504b.js",
+    "static/js/2.32727949.chunk.js",
+    "static/css/main.1a8bd139.chunk.css",
+    "static/js/main.adc77d99.chunk.js"
+  ]
+}
